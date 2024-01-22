@@ -319,7 +319,7 @@ const allOurProduct =  document.getElementById("allourProducts");
 const allourProductsError = document.getElementById("allourProducts-error");
 const saveData = document.getElementById("productSubmit");
 
-addProduct.addEventListener("click" , async (e) => {
+addProduct.addEventListener("click", async (e) => {
 	e.preventDefault();
 	const newProductDiv = document.createElement("div");
 	newProductDiv.classList.add("products");
@@ -327,22 +327,22 @@ addProduct.addEventListener("click" , async (e) => {
 	const titleInput = document.createElement("input");
 	titleInput.type = "text";
 	titleInput.classList.add(
-	"form-control",
-	"border-2",
-	"border",
-	"border-primary"
+		"form-control",
+		"border-2",
+		"border",
+		"border-primary"
 	);
 	titleInput.placeholder = "Product title";
 
 	const descriptionInput = document.createElement("input");
 	descriptionInput.type = "text";
 	descriptionInput.classList.add(
-	"form-control",
-	"border-2",
-	"border",
-	"border-primary"
+		"form-control",
+		"border-2",
+		"border",
+		"border-primary"
 	);
-    descriptionInput.placeholder = "Product description";
+	descriptionInput.placeholder = "Product description";
 
 	const imagePreview = document.createElement("div");
 	imagePreview.classList.add("image-preview");
@@ -411,7 +411,7 @@ addProduct.addEventListener("click" , async (e) => {
 });
 
 
-  async function uploadImageToFirebaseStorage(imageFile) {
+async function uploadImageToFirebaseStorage(imageFile) {
 	const storageRef = ref(storage, "totfd/products/" + imageFile.name);
 	try {
 		await uploadBytes(storageRef, imageFile);
@@ -430,105 +430,101 @@ saveData.addEventListener("click", (e) =>{
 });
 
 async function saveProductsData() {
-    const productData = await collectProductFormData();
+	const productData = await collectProductFormData();
 
-    if (productData.products.length > 0) {
-        try {
-            // Fetch existing data from Firestore
-            const existingData = await getDoc(productsAndServicesDocRef);
-            
-            // Check if data exists and 'products' property is defined
-            const existingProducts = existingData.exists() && existingData.data().products
-                ? existingData.data().products
-                : [];
+	if (productData.products.length > 0) {
+		try {
+			// Fetch existing data from Firestore
+			const existingData = await getDoc(productsAndServicesDocRef);
+			const existingProducts = existingData.exists() ? existingData.data().products : [];
 
-            // Identify new products by checking for duplicate titles
-            const newProducts = productData.products.filter(newProduct => {
-                return !existingProducts.some(existingProduct => existingProduct.title === newProduct.title);
-            });
+			// Identify new products by checking for duplicate titles
+			const newProducts = productData.products.filter(newProduct => {
+				return !existingProducts.some(existingProduct => existingProduct.title === newProduct.title);
+			});
 
-            // Merge existing data with new data (only new products)
-            const mergedProducts = existingProducts.concat(newProducts);
+			// Merge existing data with new data (only new products)
+			const mergedProducts = existingProducts.concat(newProducts);
 
-            // Update the document with the combined data
-            await updateDoc(productsAndServicesDocRef, { products: mergedProducts });
+			// Update the document with the combined data
+			await updateDoc(productsAndServicesDocRef, { products: mergedProducts });
 
-            console.log("Data saved successfully");
-            messageElement.textContent =
-                "Product Data updated successfully! Go to the Home Page and Refresh to see the changes.";
-            messageElement.style.color = "green";
-            messageElement.style.display = "block";
-            window.scrollTo(0, 0);
-        } catch (error) {
-            console.error("Error saving data: ", error);
-            messageElement.textContent = "Error updating data. Please try again.";
-            messageElement.style.color = "red";
-            messageElement.style.display = "block";
-            window.scrollTo(0, 0);
-        }
-    }
+			console.log("Data saved successfully");
+			messageElement.textContent =
+				"Product Data updated successfully! Go to the Home Page and Refresh to see the changes.";
+			messageElement.style.color = "green";
+			messageElement.style.display = "block";
+			window.scrollTo(0, 0);
+		} catch (error) {
+			console.error("Error saving data: ", error);
+			messageElement.textContent = "Error updating data. Please try again.";
+			messageElement.style.color = "red";
+			messageElement.style.display = "block";
+			window.scrollTo(0, 0);
+		}
+	}
 }
 
 
 
 async function collectProductFormData() {
 	console.log("1");
-    const productsData = {
-        productCaption: document.getElementById("ourProductsCaption").value,
-        products: [],
-    };
+	const productsData = {
+		productCaption: document.getElementById("ourProductsCaption").value,
+		products: [],
+	};
 
-    const productElements = document.querySelectorAll(".products");
+	const productElements = document.querySelectorAll(".products");
 
-    await Promise.all(Array.from(productElements).map(async (productElement) => {
+	await Promise.all(Array.from(productElements).map(async (productElement) => {
 		console.log("3");
-        const productTitleInput = productElement.querySelector("input[placeholder='Product title']");
-        const productDescInput = productElement.querySelector("input[placeholder='Product description']");
-        const imageInput = productElement.querySelector("input[type='file']");
-        const imagePreview = productElement.querySelector(".image-preview");
-        const imageUrl = productElement.querySelector(".preview-image")?.src || "";
+		const productTitleInput = productElement.querySelector("input[placeholder='Product title']");
+		const productDescInput = productElement.querySelector("input[placeholder='Product description']");
+		const imageInput = productElement.querySelector("input[type='file']");
+		const imagePreview = productElement.querySelector(".image-preview");
+		const imageUrl = productElement.querySelector(".preview-image")?.src || "";
 		console.log("4");
 
 
-        if (productDescInput !== null && productTitleInput !== null) {
+		if (productDescInput !== null && productTitleInput !== null) {
 			console.log("6");
-            let imageUrl;
+			let imageUrl;
 
-            if (imageInput.style.display !== "none" && imageInput.files[0]) {
-                imageUrl = await uploadImageToFirebaseStorage(imageInput.files[0]);
-            } else if (imageUrl) {
-                imageUrl = imageUrl;
-            }
+			if (imageInput.style.display !== "none" && imageInput.files[0]) {
+				imageUrl = await uploadImageToFirebaseStorage(imageInput.files[0]);
+			} else if (imageUrl) {
+				imageUrl = imageUrl;
+			}
 
-            const product = {
-                title: productTitleInput.value,
-                description: productDescInput.value,
-                imageUrl: imageUrl || "", // Default to an empty string if imageUrl is not defined
-            };
+			const product = {
+				title: productTitleInput.value,
+				description: productDescInput.value,
+				imageUrl: imageUrl || "", // Default to an empty string if imageUrl is not defined
+			};
 
-            productsData.products.push(product);
+			productsData.products.push(product);
 			console.log(product)
-        }
-    }));
+		}
+	}));
 
-    return productsData;
+	return productsData;
 }
 
 
 
 // Function to fetch all product data from Firestore
 async function getAllProductData() {
-    try {
-        const snapshot = await getDoc(productsAndServicesDocRef); // Replace 'your_collection_name' with the actual name of your Firestore collection
+	try {
+		const snapshot = await getDoc(productsAndServicesDocRef); // Replace 'your_collection_name' with the actual name of your Firestore collection
 		const allData = snapshot.data();
 		let productCaption = document.getElementById("ourProductsCaption");
-        productCaption.value = allData.productCaption;
+		productCaption.value = allData.productCaption;
 
-        return snapshot.data();
-    } catch (error) {
-        console.error('Error fetching product data:', error);
-        return [];
-    }
+		return snapshot.data();
+	} catch (error) {
+		console.error('Error fetching product data:', error);
+		return [];
+	}
 }
 
 // Function to display product data in the HTML
@@ -766,28 +762,40 @@ const allOurServices = document.getElementById("allOurServices");
 const addServiceButton = document.getElementById("addService");
 
 async function saveServicesData() {
-	try {
-	  const servicesData = await collectServicesFormData();
-  
-	  // Save the data to Firebase
-	  await updateDoc(productsAndServicesDocRef, servicesData);
-  
-	  console.log("Services data saved successfully!");
-	  console.log("Data updated successfully!");
-	  messageElement.textContent =
-		"Service Data updated successfully!Go to Home Page and Refresh to see the changes.";
-	  messageElement.style.color = "green";
-	  messageElement.style.display = "block";
-	  window.scrollTo(0, 0);
-	} catch (error) {
-	  console.error("Error saving data: ", error);
-	  messageElement.textContent = "Error updating data. Please try again.";
-	  messageElement.style.color = "red";
-	  messageElement.style.display = "block";
-	  window.scrollTo(0, 0);
+	const serviceData = await collectServicesFormData();
+
+	if (serviceData.services.length > 0) {
+		try {
+			// Fetch existing data from Firestore
+			const existingData = await getDoc(productsAndServicesDocRef);
+			const existingServices = existingData.exists() ? existingData.data().services : [];
+
+			// Identify new products by checking for duplicate titles
+			const newServices = serviceData.services.filter(newService => {
+				return !existingServices.some(existingService => existingService.title === newService.title);
+			});
+
+			// Merge existing data with new data (only new products)
+			const mergeServices = existingServices.concat(newServices);
+
+			// Update the document with the combined data
+			await updateDoc(productsAndServicesDocRef, { services: mergeServices });
+
+			console.log("Data saved successfully");
+			messageElement.textContent =
+				"Service Data updated successfully! Go to the Home Page and Refresh to see the changes.";
+			messageElement.style.color = "green";
+			messageElement.style.display = "block";
+			window.scrollTo(0, 0);
+		} catch (error) {
+			console.error("Error saving data: ", error);
+			messageElement.textContent = "Error updating data. Please try again.";
+			messageElement.style.color = "red";
+			messageElement.style.display = "block";
+			window.scrollTo(0, 0);
+		}
 	}
-  }
-  
+}
   async function collectServicesFormData() {
 	const servicesData = {
 	  servicesCaption: document.getElementById("ourServicesCaption").value,
@@ -829,75 +837,41 @@ serviceContentForm.addEventListener("submit", function (e) {
   saveServicesData();
 });
 
-function populateServicesForm(docSnapshot) {
-  if (docSnapshot.exists()) {
-    const servicesData = docSnapshot.data();
-    serviceCaptionInput.value = servicesData.servicesCaption || "";
 
-    // Clear existing services
-    allOurServices.innerHTML = "";
 
-    servicesData.services.forEach((service) => {
-      createServiceDiv(service.title, service.description);
-      //console.log(service.title, service.description);
-    });
-  }
+
+
+async function deleteService(serviceDiv, serviceTitle) {
+    try {
+        // Get the current products data from Firestore
+        const serviceData = await getDoc(productsAndServicesDocRef);
+        const currentServices = serviceData.exists() ? serviceData.data().services : [];
+
+        // Find the product in the array based on productTitle
+        const serviceIndex = currentServices.findIndex(service => service.title === serviceTitle);
+
+        if (serviceIndex !== -1) {
+            // Remove the product from the array
+            currentServices.splice(serviceIndex, 1);
+
+            // Update the document in Firestore with the modified products array
+            await updateDoc(productsAndServicesDocRef, { services: currentServices });
+            console.log("Service deleted from Firestore successfully!");
+			messageElement.textContent =
+			"Service Data deleted successfully! Go to the Home Page and Refresh to see the changes.";
+		messageElement.style.color = "green";
+		messageElement.style.display = "block";
+		window.scrollTo(0, 0);
+        } else {
+            console.error("Service not found in Firestore.");
+        }
+        // Remove the productDiv from the HTML
+        serviceDiv.remove();
+    } catch (error) {
+        console.error("Error deleting Service from Firestore: ", error);
+    }
 }
 
-async function deleteServiceFromFirestore(title, description) {
-  try {
-    const serviceToRemove = {
-      title: title,
-      description: description,
-    };
-    await updateDoc(productsAndServicesDocRef, {
-      services: arrayRemove(serviceToRemove),
-    });
-
-    console.log(
-      "Service deleted from Firestore successfully!Go to Home Page and Refresh to see the changes."
-    );
-  } catch (error) {
-    console.error("Error deleting service from Firestore: ", error);
-  }
-}
-
-function createServiceDiv(title, description) {
-  const serviceDiv = document.createElement("div");
-  serviceDiv.classList.add("service");
-
-  serviceDiv.innerHTML = `
-    <p>Service Title: <input type="text" placeholder="Service Title" class="form-control border-2 border border-primary" value="${
-      title || ""
-    }" /></p>
-      Service Description: <input type="text" placeholder="Service Description" class="form-control border-2 border border-primary" value="${
-    description || ""
-  }" />
-      <input type="button" class="btn btn-primary delete-service" value="Delete" />
-  `;
-
-  //console.log(description);
-  const deleteButton = serviceDiv.querySelector(".delete-service");
-  deleteButton.addEventListener("click", async () => {
-    const titleInput = serviceDiv.querySelector(
-      "input[placeholder='Service Title']"
-    );
-    const descriptionInput = serviceDiv.querySelector(
-      "input[placeholder='Service Description']"
-    );
-    //location.reload();
-    //console.log(titleInput);
-    //console.log(descriptionInput);
-    await deleteServiceFromFirestore(titleInput.value, descriptionInput.value);
-    serviceDiv.remove();
-    messageElement.textContent =
-      "Service Deleted successfully!Go to Home Page and Refresh to see the changes.";
-    messageElement.style.color = "green";
-    messageElement.style.display = "block";
-    window.scrollTo(0, 0);
-  });
-  allOurServices.appendChild(serviceDiv);
-}
 
 // Add a click event listener to the button
 addServiceButton.addEventListener("click", () => {
@@ -979,7 +953,7 @@ addServiceButton.addEventListener("click", () => {
 	const descriptionInput = newServiceDiv
 	  .querySelector("input[placeholder='Service Description']")
 	  .value.trim();
-	await deleteServiceFromFirestore(titleInput.value, descriptionInput.value);
+	await deleteService(titleInput, descriptionInput);
 	allOurServices.removeChild(newServiceDiv);
 	messageElement.textContent =
 	  "Service Data Deleted successfully!Go to Home Page and Refresh to see the changes.";
@@ -1015,6 +989,115 @@ async function uploadServiceImageToFirebaseStorage(imageFile) {
 }
 
 
+// Function to fetch all product data from Firestore
+async function getAllServiceData() {
+    try {
+        const snapshot = await getDoc(productsAndServicesDocRef); // Replace 'your_collection_name' with the actual name of your Firestore collection
+		const allData = snapshot.data();
+		let servicesCaption = document.getElementById("ourServicesCaption");
+        servicesCaption.value = allData.servicesCaption;
+
+        return snapshot.data();
+    } catch (error) {
+        console.error('Error fetching product data:', error);
+        return [];
+    }
+}
+displayAllServices();
+async function displayAllServices() {
+    const allServiceData = await getAllServiceData();
+	const allData = allServiceData;
+	const serviceData = allServiceData ? allServiceData.services : [];
+	console.log(serviceData);
+    const servicesContainer = document.getElementById('allOurServices'); // Replace with your actual container ID
+     
+	
+
+   
+    // Iterate through the product data and create HTML elements for each product
+    serviceData.forEach(service => {
+        const newServiceDiv = document.createElement("div");
+        newServiceDiv.classList.add("products");
+
+        const titleElement = document.createElement('input');
+		titleElement.type = "text";
+		titleElement.classList.add(
+		"form-control",
+        "border-2",
+	    "border",
+	    "border-primary"
+		);
+		titleElement.placeholder = "Service title";
+        titleElement.value = service.title;
+
+        const descriptionElement = document.createElement('input');
+		descriptionElement.type = "text";
+		descriptionElement.classList.add(
+			"form-control",
+			"border-2",
+			"border",
+			"border-primary"
+		);
+		descriptionElement.placeholder = "Service description";
+        descriptionElement.value = service.description;
+
+	
+        // Image Preview
+        const imagePreviewDiv = document.createElement('div');
+        imagePreviewDiv.classList.add('image-preview');
+		imagePreviewDiv.style.height = "3cm";
+	    imagePreviewDiv.style.width = "3cm";
+	    imagePreviewDiv.style.marginBottom = "10px";
+        if (service.serviceImageUrl) {
+            const imageElement = document.createElement('img');
+            imageElement.src = service.serviceImageUrl;
+            imageElement.classList.add('preview-image');
+            imageElement.style.width = '100%';
+            imageElement.style.height = '100%';
+            imagePreviewDiv.appendChild(imageElement);
+        }
+
+		const imageInput = document.createElement('input');
+	    imageInput.type = "file";
+	    imageInput.classList.add(
+		"form-control",
+		"border-2",
+		"border",
+		"border-primary"
+	);
+
+
+	const deleteButton = document.createElement("button");
+	deleteButton.textContent = "Delete";
+	deleteButton.classList.add(
+		"btn",
+		"btn-primary",
+		"delete-product",
+		"red-button"
+	);
+
+	deleteButton.addEventListener("click", (e) => {
+		e.preventDefault();
+		const serviceTitle = titleElement.value;
+		console.log(serviceTitle);
+		deleteService(newServiceDiv, serviceTitle);
+		e.stopPropagation();
+	});
+
+    newServiceDiv.appendChild(document.createTextNode("Service Title: "));
+	newServiceDiv.appendChild(titleElement);
+	newServiceDiv.appendChild(document.createTextNode("Service Description: "));
+	newServiceDiv.appendChild(descriptionElement);
+	newServiceDiv.appendChild(document.createTextNode("Service Image: "));
+	newServiceDiv.appendChild(imagePreviewDiv);
+	newServiceDiv.appendChild(imageInput);
+
+	const deleteButtonContainer = document.createElement("div");
+	deleteButtonContainer.appendChild(deleteButton);
+	newServiceDiv.appendChild(deleteButtonContainer);
+	servicesContainer.appendChild(newServiceDiv);
+    });
+}
 
 // const productContentForm = document.getElementById("products-content-form");
 // const productCaptionInput = document.getElementById("ourProductsCaption");
@@ -1260,7 +1343,7 @@ function populateFormFields() {
 	getDoc(productsAndServicesDocRef)
 		.then((docSnapshot) => {
 			if (docSnapshot.exists()) {
-				populateServicesForm(docSnapshot);
+				// populateServicesForm(docSnapshot);
 				//populateProductsForm(docSnapshot);
 			}
 		})
