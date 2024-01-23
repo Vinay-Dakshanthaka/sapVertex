@@ -98,28 +98,28 @@ function getHomePageDataFromFirestoreAndSave() {
 					const aboutUsPoints = document.getElementById("aboutUsPoints");
 					homepageData.aboutUsPoints.forEach((point, index) => {
 						const col = document.createElement("div");
-				col.className = "col-12 wow zoomIn";
-				col.setAttribute("data-wow-delay", 0.2 * (index + 1) + "s");
-	
-				const pointElement = document.createElement("div"); // Use a div instead of h5
-				pointElement.className = "mb-3 d-flex align-items-start"; // Add d-flex and align-items-start classes
-	
-				// Add the icon to the pointElement using addIconToElement function
-				addIconToElement(pointElement)
-					.then((message) => {
-						// Icon added successfully
-					})
-					.catch((error) => {
-						console.error(error);
-					});
-	
-				const textContainer = document.createElement("div");
-				textContainer.style.flexGrow = 1; // Make textContainer take up remaining space
-				textContainer.textContent = point;
-	
-				pointElement.appendChild(textContainer);
-				col.appendChild(pointElement);
-				aboutUsPoints.appendChild(col);
+						col.className = "col-12 wow zoomIn";
+						col.setAttribute("data-wow-delay", 0.2 * (index + 1) + "s");
+
+						const pointElement = document.createElement("div"); // Use a div instead of h5
+						pointElement.className = "mb-3 d-flex align-items-start"; // Add d-flex and align-items-start classes
+
+						// Add the icon to the pointElement using addIconToElement function
+						addIconToElement(pointElement)
+							.then((message) => {
+								// Icon added successfully
+							})
+							.catch((error) => {
+								console.error(error);
+							});
+
+						const textContainer = document.createElement("div");
+						textContainer.style.flexGrow = 1; // Make textContainer take up remaining space
+						textContainer.textContent = point;
+
+						pointElement.appendChild(textContainer);
+						col.appendChild(pointElement);
+						aboutUsPoints.appendChild(col);
 					});
 					sessionStorage.setItem("homepageData", JSON.stringify(homepageData));
 				}
@@ -138,7 +138,7 @@ const addIconToElement = (pointElement) => {
 		icon.classList.add("fas", "fa-check", "text-primary", "me-3");
 
 		icon.style.marginTop = "auto"; // Align the icon to the middle vertically
-        icon.style.marginBottom = "auto"; 
+		icon.style.marginBottom = "auto";
 
 		setTimeout(() => {
 			pointElement.insertBefore(icon, pointElement.firstChild);
@@ -146,6 +146,7 @@ const addIconToElement = (pointElement) => {
 		}, 1000);
 	});
 };
+
 
 async function servicesAndProducts() {
 	try {
@@ -194,33 +195,40 @@ async function servicesAndProducts() {
 					serviceItem.className =
 						"service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center";
 
-						const cardBody = document.createElement("div");
-						cardBody.classList.add(
-							"service-item",
-							"bg-light",
-							"rounded",
-							"d-flex",
-							"flex-column",
-							"align-items-center",
-							"justify-content-center",
-							"text-center"
-						);
-				
-				
-						const iconContainer = document.createElement("div");
-						iconContainer.classList.add('rounded-2',"shadow")
-						iconContainer.style.width = "200px";
-						iconContainer.style.height = "200px"; 
-						iconContainer.style.overflow = "hidden"; 
+					const cardBody = document.createElement("div");
+					cardBody.classList.add(
+						"service-item",
+						"bg-light",
+						"rounded",
+						"d-flex",
+						"flex-column",
+						"align-items-center",
+						"justify-content-center",
+						"text-center"
+					);
+
+
+					const iconContainer = document.createElement("div");
+					iconContainer.classList.add('rounded-2', "shadow")
+					iconContainer.style.width = "200px";
+					iconContainer.style.height = "200px";
+					iconContainer.style.overflow = "hidden";
 						
-						const icon = document.createElement("img");
-						icon.src = service.serviceImageUrl;
-						icon.alt = "Service Icon";
-						icon.style.width = "100%"; 
-						icon.style.height = "100%"; 
-						
-						iconContainer.appendChild(icon);
-						cardBody.appendChild(iconContainer);
+					const icon = document.createElement("img");
+					icon.src = service.serviceImageUrl;
+					icon.alt = "Service Icon";
+					icon.style.width = "100%";
+					icon.style.height = "100%";
+					icon.style.cursor = "pointer"
+					// icon.addEventListener('click',()=>{
+					// 	window.location.href = "service.html"
+					// })
+					icon.addEventListener('click', () => {
+						window.location.href = "service.html?#serviceBox_"+index;
+					});
+					
+					iconContainer.appendChild(icon);
+					cardBody.appendChild(iconContainer);
 
 					const serviceTitle = document.createElement("h4");
 					serviceTitle.className = "mb-3";
@@ -236,6 +244,10 @@ async function servicesAndProducts() {
 					const linkIcon = document.createElement("i");
 					linkIcon.className = "bi bi-arrow-right";
 					serviceLink.appendChild(linkIcon);
+						serviceLink.addEventListener('click',()=>{
+							window.location.href = "service.html?#serviceBox_"+index;
+						})
+						
 
 					serviceItem.appendChild(icon);
 					serviceItem.appendChild(serviceTitle);
@@ -245,36 +257,9 @@ async function servicesAndProducts() {
 					serviceColumn.appendChild(serviceItem);
 					servicesRow.appendChild(serviceColumn);
 
-					serviceItem.addEventListener("click", function () {
-						const userResponse = confirm("Do you wish to know more information?");
-						if (userResponse) {
-						  // Instead of navigating to a new page, open the modal
-						  openModal(service.description);
-						}
-					  });
-			
-					  function openModal( description) {
-						const modal = document.getElementById("serviceModal");
-						const modalText = document.getElementById("modalText");
-					  
-						// Set modal content
-						modalText.textContent = `${description}`;
-					  
-						// Display the modal
-						modal.style.display = "flex";
-					  }
-			
-					  const down = document.getElementById("down");
-					  down.addEventListener("click", closeModal);
-					  
-					  // Function to close the modal
-					  function closeModal() {
-						const modal = document.getElementById("serviceModal");
-						modal.style.display = "none";
-					  }
 				});
 
-				
+
 
 				const servicesDropdown = document.getElementById("servicesDropdown");
 				productsAndServicesData.services.forEach((service) => {
@@ -307,6 +292,8 @@ async function servicesAndProducts() {
 		console.log("Error checking for service data:", error);
 	}
 }
+
+
 function displaySocialIcons(data) {
 	const connectWithUsBanner = document.getElementById("connectWithUsBanner");
 	connectWithUsBanner.innerHTML = "";
@@ -315,7 +302,7 @@ function displaySocialIcons(data) {
 		(data.hasOwnProperty("facebook") ||
 			data.hasOwnProperty("instagram") ||
 			data.hasOwnProperty("youtube") ||
-			data.hasOwnProperty("twitter")||
+			data.hasOwnProperty("twitter") ||
 			data.hasOwnProperty("linkedin"))
 	) {
 		connectWithUsBanner.style.display = "flex";
@@ -374,7 +361,7 @@ function createSocialIcon(platform, url, iconClass) {
 }
 function getDataFromFirestoreAndSave() {
 
-	const productClientDocref =doc(totfdCollection, "clientProductRef");
+	const productClientDocref = doc(totfdCollection, "clientProductRef");
 	getDoc(productClientDocref)
 		.then((docSnapshot) => {
 			if (docSnapshot.exists()) {
@@ -388,8 +375,8 @@ function getDataFromFirestoreAndSave() {
 					clientsLink2.style.display = "block";
 				}
 
-				
-				
+
+
 			}
 		})
 		.catch((error) => {
@@ -462,7 +449,7 @@ function getDataFromFirestoreAndSave() {
 					phoneData.textContent = formattedMobile1;
 					//phoneData2.textContent = formattedMobile;
 				}
-				
+
 				if (data && data.mobile2) {
 					const formattedMobile1 = `+91 ${data.mobile2.substring(
 						0,
@@ -472,40 +459,40 @@ function getDataFromFirestoreAndSave() {
 					phoneData2.textContent = formattedMobile1;
 				}
 				const phoneData5 = document.querySelector(".phone-section2 .contact-data2");
-	const phoneData3 = document.querySelector(".phone-section2 .contact-data3");
-	const phoneData4 = document.querySelector(".phone-section2 .contact-data4");
-	if (data && data.mobile1) {
-		//phoneData.textContent = data.mobile;
-		const formattedMobile = `+91 ${data.mobile1.substring(
-			0,
-			5
-		)} ${data.mobile1.substring(5)}`;
-		phoneData5.textContent = formattedMobile;
-} else {
-	console.log("No payment data found in session storage.");
-}
-if (data && data.mobile2) {
-	//phoneData.textContent = data.mobile;
-	const formattedMobile2 = `+91 ${data.mobile2.substring(
-		0,
-		5
-	)} ${data.mobile2.substring(5)}`;
-	phoneData3.textContent = formattedMobile2;
-}
- else {
-console.log("No payment data found in session storage.");
-}
-if (data && data.mobile3) {
-	//phoneData.textContent = data.mobile;
-	const formattedMobile3 = `+91 ${data.mobile3.substring(
-		0,
-		5
-	)} ${data.mobile3.substring(5)}`;
-	phoneData4.textContent = formattedMobile3;
-}
- else {
-console.log("No payment data found in session storage.");
-}
+				const phoneData3 = document.querySelector(".phone-section2 .contact-data3");
+				const phoneData4 = document.querySelector(".phone-section2 .contact-data4");
+				if (data && data.mobile1) {
+					//phoneData.textContent = data.mobile;
+					const formattedMobile = `+91 ${data.mobile1.substring(
+						0,
+						5
+					)} ${data.mobile1.substring(5)}`;
+					phoneData5.textContent = formattedMobile;
+				} else {
+					console.log("No payment data found in session storage.");
+				}
+				if (data && data.mobile2) {
+					//phoneData.textContent = data.mobile;
+					const formattedMobile2 = `+91 ${data.mobile2.substring(
+						0,
+						5
+					)} ${data.mobile2.substring(5)}`;
+					phoneData3.textContent = formattedMobile2;
+				}
+				else {
+					console.log("No payment data found in session storage.");
+				}
+				if (data && data.mobile3) {
+					//phoneData.textContent = data.mobile;
+					const formattedMobile3 = `+91 ${data.mobile3.substring(
+						0,
+						5
+					)} ${data.mobile3.substring(5)}`;
+					phoneData4.textContent = formattedMobile3;
+				}
+				else {
+					console.log("No payment data found in session storage.");
+				}
 
 
 				if (data && data.imageUrl) {
@@ -684,15 +671,15 @@ document.addEventListener("DOMContentLoaded", function () {
 						);
 
 						const teamImg = document.createElement("div");
-			teamImg.classList.add("team-img", "position-relative", "overflow-hidden", "d-flex", "justify-content-center", "align-items-center");
+						teamImg.classList.add("team-img", "position-relative", "overflow-hidden", "d-flex", "justify-content-center", "align-items-center");
 
-			const imgElement = document.createElement("img");
-			imgElement.classList.add("img-fluid", "w-100");
-			imgElement.style.maxWidth = "250px"; // Adjust this value as needed
-            imgElement.style.height = "auto";
-			imgElement.src = founder.picUrl;
-			imgElement.alt = founder.founderName;
-			teamImg.appendChild(imgElement);
+						const imgElement = document.createElement("img");
+						imgElement.classList.add("img-fluid", "w-100");
+						imgElement.style.maxWidth = "250px"; // Adjust this value as needed
+						imgElement.style.height = "auto";
+						imgElement.src = founder.picUrl;
+						imgElement.alt = founder.founderName;
+						teamImg.appendChild(imgElement);
 
 						const teamSocial = document.createElement("div");
 						teamSocial.classList.add("team-social");
@@ -728,12 +715,12 @@ document.addEventListener("DOMContentLoaded", function () {
 						textCenter.classList.add("py-4");
 
 						const nameElement = document.createElement("h4");
-						nameElement.classList.add("text-center","text-primary");
+						nameElement.classList.add("text-center", "text-primary");
 						nameElement.textContent = founder.founderName;
 						textCenter.appendChild(nameElement);
 
 						const designationElement = document.createElement("p");
-						designationElement.classList.add("text-center","text-uppercase", "m-0");
+						designationElement.classList.add("text-center", "text-uppercase", "m-0");
 						designationElement.textContent = founder.founderDesignation;
 						textCenter.appendChild(designationElement);
 
@@ -782,7 +769,7 @@ document.addEventListener("DOMContentLoaded", function () {
 					sessionStorage.setItem("clientsData", JSON.stringify(clientsArray));
 					// initializeClientCarousel();	
 				}
-				
+
 			}
 		})
 		.catch((error) => {
@@ -794,26 +781,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // function initializeClientCarousel() {
 // 	console.log("xxx");
-  
+
 // 	const storedClientsData = sessionStorage.getItem("clientsData");
-	
+
 // 	if (storedClientsData) {
 // 	  const clientsData = JSON.parse(storedClientsData);
 // 	  const vendorSection = document.getElementById("vendorSection");
-	  
+
 // 	  // Clear existing content in the vendorSection
 // 	  vendorSection.innerHTML = "";
-  
+
 // 	  clientsData.forEach((client) => {
 // 		const clientContainer = document.createElement("div");
 // 		clientContainer.classList.add("client-container");
-  
+
 // 		const imgElement = document.createElement("img");
 // 		imgElement.src = client.picUrl;
 // 		imgElement.alt = client.name;
 // 		imgElement.style.display = "block";
 // 		clientContainer.appendChild(imgElement);
-  
+
 // 		const nameElement = document.createElement("p");
 // 		nameElement.textContent = client.name;
 // 		nameElement.style.fontSize = "14px";
@@ -821,10 +808,10 @@ document.addEventListener("DOMContentLoaded", function () {
 // 		nameElement.style.margin = "0";
 // 		nameElement.style.textAlign = "center";
 // 		clientContainer.appendChild(nameElement);
-  
+
 // 		vendorSection.appendChild(clientContainer);
 // 	  });
-  
+
 // 	  // Initialize Owl Carousel after populating the vendorSection
 // 	  $("#vendorSection").owlCarousel({
 // 		loop: true,
@@ -939,7 +926,7 @@ document
 				to_email: "info@mbpvtltd.com",
 				from_name: name,
 				from_email: email || "Not Provided",
-				mobile_number: mobile|| "Not Provided",
+				mobile_number: mobile || "Not Provided",
 				subject: service,
 				message: message,
 			};
@@ -965,7 +952,7 @@ document
 					console.error("Error adding document: ", error);
 				});
 
-				
+
 		}
 	});
 
@@ -980,33 +967,33 @@ function validateMobile(mobile) {
 
 
 async function displayVideoOnHomepage() {
-    try {
-        const docSnapshot = await getDoc(homepageDocRef);
-        if (docSnapshot.exists()) {
-            const data = docSnapshot.data();
-            const videoUrl1 = data.videoUrl1;
-            const videoUrl2 = data.videoUrl2;
+	try {
+		const docSnapshot = await getDoc(homepageDocRef);
+		if (docSnapshot.exists()) {
+			const data = docSnapshot.data();
+			const videoUrl1 = data.videoUrl1;
+			const videoUrl2 = data.videoUrl2;
 
-            // Display the videos on the homepage
-            displayVideo(videoUrl1, 'videoPlayer1');
-            displayVideo(videoUrl2, 'videoPlayer2');
-        } else {
-            console.log("Homepage document does not exist.");
-        }
-    } catch (error) {
-        console.error("Error fetching video URLs from Firestore:", error);
-    }
+			// Display the videos on the homepage
+			displayVideo(videoUrl1, 'videoPlayer1');
+			displayVideo(videoUrl2, 'videoPlayer2');
+		} else {
+			console.log("Homepage document does not exist.");
+		}
+	} catch (error) {
+		console.error("Error fetching video URLs from Firestore:", error);
+	}
 }
 
 function displayVideo(url, videoPlayerId) {
-    var videoPlayer = document.getElementById(videoPlayerId);
-    // var playButton = document.getElementById(playButtonId);
+	var videoPlayer = document.getElementById(videoPlayerId);
+	// var playButton = document.getElementById(playButtonId);
 
-    videoPlayer.src = url;
-    videoPlayer.load();
+	videoPlayer.src = url;
+	videoPlayer.load();
 
-    // Add event listener to play button
-    // playButton.addEventListener('click', function () {
-    //     videoPlayer.play();
-    // });
+	// Add event listener to play button
+	// playButton.addEventListener('click', function () {
+	//     videoPlayer.play();
+	// });
 }

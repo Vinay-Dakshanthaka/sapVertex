@@ -760,6 +760,9 @@ const serviceContentForm = document.getElementById("service-content-form");
 const serviceCaptionInput = document.getElementById("ourServicesCaption");
 const allOurServices = document.getElementById("allOurServices");
 const addServiceButton = document.getElementById("addService");
+const servicesPointsContainer = document.getElementById("servicesPoints");
+const addServicesPointButton = document.getElementById("addServicesPoint");
+
 
 async function saveServicesData() {
 	const serviceData = await collectServicesFormData();
@@ -796,10 +799,10 @@ async function saveServicesData() {
 		}
 	}
 }
-  async function collectServicesFormData() {
+async function collectServicesFormData() {
 	const servicesData = {
 	  servicesCaption: document.getElementById("ourServicesCaption").value,
-	  services: [], // Initialize with an empty array
+	  services: [],
 	};
   
 	const serviceElements = document.querySelectorAll(".service");
@@ -814,32 +817,36 @@ async function saveServicesData() {
 	  if (serviceImageInput) {
 		if (serviceImageInput.style.display !== "none" && serviceImageInput.files[0]) {
 		  serviceImageUrl = await uploadServiceImageToFirebaseStorage(serviceImageInput.files[0]);
-		} else if (imageUrl) {
-		  serviceImageUrl = imageUrl;
+		} else if (serviceImageUrl) {
+		  serviceImageUrl = serviceImageUrl;
 		}
 	  }
+  
+	  const servicePointsInputs = serviceElement.querySelectorAll(".service-points input[type='text']");
+	  const servicesPoints = [];
+  
+	  servicePointsInputs.forEach((pointInput) => {
+		servicesPoints.push(pointInput.value);
+	  });
   
 	  const service = {
 		title: serviceTitleInput.value,
 		description: serviceDescInput.value,
 		serviceImageUrl: serviceImageUrl || "",
+		servicesPoints: servicesPoints,
 	  };
   
 	  servicesData.services.push(service);
 	}
   
 	return servicesData;
-  }
+  }  
   
 
 serviceContentForm.addEventListener("submit", function (e) {
   e.preventDefault();
   saveServicesData();
 });
-
-
-
-
 
 async function deleteService(serviceDiv, serviceTitle) {
     try {
@@ -872,13 +879,57 @@ async function deleteService(serviceDiv, serviceTitle) {
     }
 }
 
+async function deletePointFromServiceDocRef(pointText) {
+	try {
+		const fieldValue = arrayRemove(pointText);
+		await updateDoc(productsAndServicesDocRef, { servicesPoints: fieldValue });
+		console.log("Point deleted from Firestore successfully!");
+	} catch (error) {
+		console.error("Error deleting point from Firestore: ", error);
+	}
+}
+
+
+
+
 
 // Add a click event listener to the button
 addServiceButton.addEventListener("click", () => {
   // Create a new div for the service
   const newServiceDiv = document.createElement("div");
   newServiceDiv.classList.add("service");
-
+	 // Create a new div for the service points
+	 const servicesPointsDiv = document.createElement("div");
+	 servicesPointsDiv.classList.add("form-group", "mt-lg-3", "border","m-2");
+	 const servicesPointsLabel = document.createElement("label");
+	 servicesPointsLabel.setAttribute("for", "servicesPoints");
+	 servicesPointsLabel.textContent = "Services Points : ";
+   
+	 // Create a div for displaying service points
+	 const servicesPointsContainer = document.createElement("div");
+	 servicesPointsContainer.id = "servicesPoints";
+	 servicesPointsContainer.classList.add("service-points");
+   
+	 // Create a button to add one more service point
+	 const addServicesPointButton = document.createElement("button");
+	 addServicesPointButton.id = "addServicesPoint";
+	 addServicesPointButton.type = "button";
+	 addServicesPointButton.classList.add("btn", "btn-primary", "m-2");
+	 addServicesPointButton.innerHTML = "&#10011; Add One More Service Point";
+   
+	 // Create a span for displaying error message
+	 const servicesPointsErrorSpan = document.createElement("span");
+	 servicesPointsErrorSpan.id = "servicesPoints-error";
+	 servicesPointsErrorSpan.classList.add("error-message");
+	 servicesPointsErrorSpan.style.display = "none";
+	 servicesPointsErrorSpan.textContent = "Enter Services Points";
+   
+	 // Append the elements to the servicesPointsDiv
+	 servicesPointsDiv.appendChild(servicesPointsLabel);
+	 servicesPointsDiv.appendChild(servicesPointsContainer);
+	 servicesPointsDiv.appendChild(addServicesPointButton);
+	 servicesPointsDiv.appendChild(servicesPointsErrorSpan);
+   
   // Create input elements for the service title and description
   const titleInput = document.createElement("input");
   titleInput.type = "text";
@@ -915,6 +966,7 @@ addServiceButton.addEventListener("click", () => {
 	"border",
 	"border-primary"
   );
+ 
 
   imageInput.addEventListener("change", (e) => {
 	const file = e.target.files[0];
@@ -932,6 +984,7 @@ addServiceButton.addEventListener("click", () => {
 	reader.readAsDataURL(file);
   });
 
+
   // Create a delete button
   const deleteButton = document.createElement("input");
   deleteButton.type = "button";
@@ -944,6 +997,7 @@ addServiceButton.addEventListener("click", () => {
 
   const deleteButtonContainer = document.createElement("div");
   deleteButtonContainer.appendChild(deleteButton);
+  
 
   // Add a click event listener to the delete button
   deleteButton.addEventListener("click", async () => {
@@ -970,11 +1024,50 @@ addServiceButton.addEventListener("click", () => {
   newServiceDiv.appendChild(document.createTextNode("Service Image: "))
   newServiceDiv.appendChild(imagePreview);
   newServiceDiv.appendChild(imageInput);
+  newServiceDiv.appendChild(servicesPointsDiv);
   newServiceDiv.appendChild(deleteButtonContainer);
 
   // Append the new service div to the container
   allOurServices.appendChild(newServiceDiv);
+
+  addServicesPointButton.addEventListener("click", () => {
+	const newPointDiv = document.createElement("div");
+	newPointDiv.classList.add("service-point");
+	const pointInput = document.createElement("input");
+	pointInput.type = "text";
+	pointInput.classList.add("form-control", "border", "border-primary");
+	const deleteButton = document.createElement("input");
+	deleteButton.type = "button";
+	deleteButton.classList.add("btn", "btn-primary", "delete-point");
+	deleteButton.value = "Delete";
+
+	deleteButton.addEventListener("click", async () => {
+		const pointText = newPointDiv
+			.querySelector("input[type='text']")
+			.value.trim();
+		await deltePointFromProductsAndServicesDocRef(pointText);
+		servicesPointsContainer.removeChild(newPointDiv);
+	});
+
+	newPointDiv.appendChild(document.createTextNode("Point: "));
+	newPointDiv.appendChild(pointInput);
+	newPointDiv.appendChild(deleteButton);
+
+	servicesPointsContainer.appendChild(newPointDiv);
 });
+});
+
+
+
+async function deltePointFromProductsAndServicesDocRef(pointText) {
+	try {
+		const fieldValue = arrayRemove(pointText);
+		await updateDoc(homepageDocRef, { aboutUsPoints: fieldValue });
+		console.log("Point deleted from Firestore successfully!");
+	} catch (error) {
+		console.error("Error deleting point from Firestore: ", error);
+	}
+}
 
 async function uploadServiceImageToFirebaseStorage(imageFile) {
   const storageRef = ref(storage, "totfd/services/" + imageFile.name);
@@ -989,7 +1082,7 @@ async function uploadServiceImageToFirebaseStorage(imageFile) {
 }
 
 
-// Function to fetch all product data from Firestore
+// Function to fetch all service data from Firestore
 async function getAllServiceData() {
     try {
         const snapshot = await getDoc(productsAndServicesDocRef); // Replace 'your_collection_name' with the actual name of your Firestore collection
@@ -1009,12 +1102,7 @@ async function displayAllServices() {
 	const allData = allServiceData;
 	const serviceData = allServiceData ? allServiceData.services : [];
 	console.log(serviceData);
-    const servicesContainer = document.getElementById('allOurServices'); // Replace with your actual container ID
-     
-	
-
-   
-    // Iterate through the product data and create HTML elements for each product
+    const servicesContainer = document.getElementById('allOurServices'); 
     serviceData.forEach(service => {
         const newServiceDiv = document.createElement("div");
         newServiceDiv.classList.add("products");
@@ -1040,9 +1128,7 @@ async function displayAllServices() {
 		);
 		descriptionElement.placeholder = "Service description";
         descriptionElement.value = service.description;
-
 	
-        // Image Preview
         const imagePreviewDiv = document.createElement('div');
         imagePreviewDiv.classList.add('image-preview');
 		imagePreviewDiv.style.height = "3cm";
@@ -1066,7 +1152,6 @@ async function displayAllServices() {
 		"border-primary"
 	);
 
-
 	const deleteButton = document.createElement("button");
 	deleteButton.textContent = "Delete";
 	deleteButton.classList.add(
@@ -1084,16 +1169,39 @@ async function displayAllServices() {
 		e.stopPropagation();
 	});
 
+	// Display service points
+	const servicesPointsContainer = document.createElement("div");
+	servicesPointsContainer.classList.add("service-points-container");
+	
+	if (service.servicesPoints && service.servicesPoints.length > 0) {
+	  service.servicesPoints.forEach((point, index) => {
+		const inputField = document.createElement("input");
+		inputField.type = "text";
+		inputField.classList.add("form-control", "border", "border-primary");
+		inputField.placeholder = `Service Point ${index + 1}`;
+		inputField.value = point;
+	
+		servicesPointsContainer.appendChild(inputField);
+	  });
+	} else {
+	  const noPointsMessage = document.createElement("p");
+	  noPointsMessage.textContent = "No service points available.";
+	  servicesPointsContainer.appendChild(noPointsMessage);
+	}
+    
+
     newServiceDiv.appendChild(document.createTextNode("Service Title: "));
 	newServiceDiv.appendChild(titleElement);
 	newServiceDiv.appendChild(document.createTextNode("Service Description: "));
 	newServiceDiv.appendChild(descriptionElement);
 	newServiceDiv.appendChild(document.createTextNode("Service Image: "));
 	newServiceDiv.appendChild(imagePreviewDiv);
+	
 	newServiceDiv.appendChild(imageInput);
 
 	const deleteButtonContainer = document.createElement("div");
 	deleteButtonContainer.appendChild(deleteButton);
+	newServiceDiv.appendChild(servicesPointsContainer);
 	newServiceDiv.appendChild(deleteButtonContainer);
 	servicesContainer.appendChild(newServiceDiv);
     });
