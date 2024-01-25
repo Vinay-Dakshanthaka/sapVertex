@@ -38,7 +38,48 @@
 			padding: 0;
 			box-sizing: border-box;
 		}
+		.marquee-container {
+      white-space: nowrap;
+      overflow: hidden;
+      position: relative;
+	  background-color: orange;
+    }
 
+    .marquee-content {
+      display: inline-block;
+      animation: marqueeAnimation 7s linear infinite;
+	  font-size: 1.5rem;
+	  font-weight: bolder;
+	  color: blue;
+	  font-family: cursive;
+	  text-shadow: 0px 8px 8px rgba(0, 0, 0, 0.35);
+    }
+	.gifImg{
+		filter: drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.5)); 
+	}
+    .sticker {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translate(0, -50%);
+      background-color: #f00;
+      color: #fff;
+      padding: 5px;
+	  font-size: 1.2rem;
+	  display: block;
+	  margin-left: -4rem;
+	  border-radius: 20px; 
+    }
+	
+
+    @keyframes marqueeAnimation {
+      from {
+        translateX:(100%) ;
+      }
+      to {
+        translateX:(-100%) ;
+      }
+    }
 		.biogas {
 			display: flex;
 			justify-content: center;
@@ -404,8 +445,15 @@
 				<div class="navbar-nav ms-auto py-0">
 					<a href="./index.html" class="nav-item nav-link active">Home</a>
 					<a href="./about.html" class="nav-item nav-link">About Us</a>
-					<a href="./service.html" class="nav-item nav-link" id="services" style="display: none">Our
-						Services</a>
+					<!-- <a href="./service.html" class="nav-item nav-link" id="services" style="display: none">Our
+						Services</a> -->
+						<div class="nav-item dropdown">
+							<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+							id="services">Courses</a>
+							<div class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start m-0" id="servicesDropdownMenu">
+								
+							</div>
+						</div>
 					<a href="./ProductsClient.html" class="nav-item nav-link" id="clients" style="display: none">Clients
 					</a>
 					<a href="./products.html" class="nav-item nav-link" id="products" style="display: none">Our
@@ -615,13 +663,24 @@
 		</div> -->
 	<!-- Facts Start -->
 
+	<div class="marquee-container">
+		<marquee behavior="" direction="">
+		<img src="./img/gif.webp" alt="" width="100px" height="100px" class="gifImg">
+		<div class="marquee-content" id="specialofferMessage">
+		 
+		</div>
+		<!-- <div class="sticker">New!</div> -->
+		<img src="./img/gif.webp" alt="" width="100px" height="100px" class="gifImg">
+	</marquee>
+	  </div>
+
 	<!-- About Start -->
 	<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s" id="aboutUsContainer">
 		<div class="container py-5">
 			<div class="row g-5">
 				<div class="col-lg-7">
 					<div class="section-title position-relative pb-3 mb-5">
-						<h5 class="fw-bold text-primary text-uppercase">About Us</h5>
+						<h4 class="fw-bold text-primary text-uppercase">About Us</h4>
 						<h1 class="mb-0" id="aboutUsHeader"></h1>
 					</div>
 					<p class="mb-4" id="aboutUsCaption"></p>
@@ -682,8 +741,8 @@
 			</div>
 			<!-- modal ends -->
 			<div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px">
-				<h5 class="fw-bold text-primary text-uppercase">Our Services</h5>
-				<h1 class="mb-0" id="servicesTitle"></h1>
+				<h1 class="fw-bold text-primary text-uppercase">Our Courses</h1>
+				<h3 class="mb-0" id="servicesTitle"></h3>
 			</div>
 
 			<div class="row g-5" id="servicesRow">
@@ -972,7 +1031,7 @@
 		<div class="container py-5">
 			<div class="section-title text-center position-relative pb-3 mb-4 mx-auto" style="max-width: 600px">
 				<!-- <h5 class="fw-bold text-primary text-uppercase"></h5> -->
-				<h1 class="mb-0">Students Review</h1>
+				<h1 class="mb-0">Students Placed</h1>
 			</div>
 			<div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.6s" id="testimonial-carousel">
 				<!-- Testimonial items will be dynamically added here -->

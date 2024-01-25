@@ -113,8 +113,14 @@
         <div class="navbar-nav ms-auto py-0">
           <a href="./index.html" class="nav-item nav-link">Home</a>
           <a href="./about.html" class="nav-item nav-link ">About Us</a>
-          <a href="./service.html" class="nav-item nav-link" id="services" style="display: none">Our
-            Services</a>
+          <!-- <a href="./service.html" class="nav-item nav-link" id="services" style="display: none">Our
+            Services</a> -->
+			<div class="nav-item dropdown">
+				<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+				id="services">Courses</a>
+				<div class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start m-0" id="servicesDropdownMenu">
+				</div>
+			</div>
           <a href="./ProductsClient.html" class="nav-item nav-link" id="clients" style="display: none">Clients
           </a>
           <a href="./products.html" class="nav-item nav-link" id="products" style="display: none">Our
@@ -269,6 +275,12 @@
 						<label for="footerMessage">Footer Message: </label>
 						<input type="text" id="footerMessageInput" class="form-control border border-primary">
 						<span id="footerMessage-error" class="alert alert-danger" style="display: none;">Enter Footer
+							Message</span>
+					</div>
+					<div class="form-group mt-lg-3">
+						<label for="specialOffer">Announcement : </label>
+						<input type="text" id="specialOffer" class="form-control border border-primary">
+						<span id="specialOfferMessage-error" class="alert alert-danger" style="display: none;">Enter Announcement
 							Message</span>
 					</div>
 					<div class="form-group mt-3">
@@ -453,6 +465,7 @@
 				</form>
 			</div>
 		</div>
+		
 	</section>
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">

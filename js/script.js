@@ -3,7 +3,7 @@ import {
 	signOut,
 } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
 
-import { auth } from "../js/firebase-config.js";
+import { auth,doc,collection,firestore,getDoc } from "../js/firebase-config.js";
 
 if (sessionStorage.getItem("loggedIn") === "true") {
 	onLoggedIn();
@@ -410,3 +410,25 @@ applyFontFamilyAndLogoToNavbar();
 document.addEventListener("DOMContentLoaded", function () {
 	populateClientTable();
 });
+
+const totfdCollection = collection(firestore, "totfd");
+const productsAndServicesDocRef = doc(
+			totfdCollection,
+			"ProductsAndServices"
+		);
+		getDoc(productsAndServicesDocRef).then((doc) => {
+			const servicesDropdownMenu = document.getElementById("servicesDropdownMenu");
+			const services = doc.data().services; 
+			// console.log("hello",services)
+		
+			// Loop through the services array and create anchor tags dynamically
+			services.forEach((service, index) => {
+				const dropdownItem = document.createElement("a");
+				dropdownItem.href = `service.html?#serviceBox_${index}`;
+				dropdownItem.classList.add("dropdown-item");
+				dropdownItem.textContent = service.title;
+		
+				// Append the dynamically created anchor tag to the dropdown menu
+				servicesDropdownMenu.appendChild(dropdownItem);
+			});
+		});

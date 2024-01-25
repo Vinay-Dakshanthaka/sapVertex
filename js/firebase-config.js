@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
+import { getFirestore,doc,collection,getDoc } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
 import { getStorage } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-storage.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
 
@@ -17,4 +17,4 @@ const storage = getStorage(app);
 const firestore = getFirestore(app);
 const auth = getAuth(app);
 
-export { app, firestore, storage, auth };
+export { app, firestore, storage, auth,doc,collection,getDoc };

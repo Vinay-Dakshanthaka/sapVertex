@@ -29,11 +29,12 @@ const webAppNameInput = document.getElementById("webAppName1");
 const homePageWelcomeInput = document.getElementById("homePageWelcome");
 const homePageCaptionInput = document.getElementById("homePageCaption");
 const footerMessageInput = document.getElementById("footerMessageInput");
+const specialOfferInput = document.getElementById("specialOffer")
 const webAppNameError = document.getElementById("webAppName-error");
 const homePageWelcomeError = document.getElementById("homePageWelcome-error");
 const homePageCaptionError = document.getElementById("homePageCaption-error");
 const footerMessageError = document.getElementById("footerMessage-error");
-
+const specialOfferMessageError = document.getElementById("specialOfferMessage-error")
 websiteContentForm.addEventListener("submit", (e) => {
 	e.preventDefault(); // Prevent the form from submitting and reloading the page
 
@@ -42,12 +43,13 @@ websiteContentForm.addEventListener("submit", (e) => {
 	homePageWelcomeError.style.display = "none";
 	homePageCaptionError.style.display = "none";
 	footerMessageError.style.display = "none";
-
+	specialOfferMessageError.style.display="none"
 	// Capture user inputs
 	const webAppName = webAppNameInput.value;
 	const homePageWelcome = homePageWelcomeInput.value;
 	const homePageCaption = homePageCaptionInput.value;
 	const footerMessage = footerMessageInput.value;
+	const specialOfferMessage = specialOfferInput.value;
 
 	// Basic form validation
 	let isValid = true;
@@ -75,6 +77,12 @@ websiteContentForm.addEventListener("submit", (e) => {
 		footerMessageError.style.display = "block";
 		isValid = false;
 	}
+	if (!specialOfferMessage) {
+		specialOfferMessageError.textContent = "Enter Footer Message";
+		console.log("a");
+		specialOfferMessageError.style.display = "block";
+		isValid = false;
+	}
 
 	if (!isValid) {
 		return;
@@ -85,6 +93,7 @@ websiteContentForm.addEventListener("submit", (e) => {
 		homePageWelcome: homePageWelcome,
 		homePageCaption: homePageCaption,
 		footerMessage: footerMessage,
+		specialOfferMessage:specialOfferMessage,
 	};
 	updateDoc(homepageDocRef, newData)
 		.then(() => {
@@ -1442,6 +1451,7 @@ function populateFormFields() {
 				homePageWelcomeInput.value = data.homePageWelcome || "";
 				homePageCaptionInput.value = data.homePageCaption || "";
 				footerMessageInput.value = data.footerMessage || "";
+				specialOfferInput.value = data.specialOfferMessage || "";
 				populateAboutUsForm(docSnapshot);
 			}
 		})
@@ -1522,5 +1532,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 		console.error("Error:", error);
 	}
 });
+
 
 
