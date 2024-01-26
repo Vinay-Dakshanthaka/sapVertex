@@ -47,6 +47,13 @@ if (hasGallery === "true") {
 
 const homepageData = getHomepageDataFromSessionStorage();
 
+const backgroundImage = document.getElementById("backgroundImage")
+backgroundImage.style.background = `url('${homepageData.homePageImageUrl1}')`
+backgroundImage.style.objectFit = 'fill';
+backgroundImage.style.backgroundRepeat = "no-repeat"
+backgroundImage.style.backgroundPosition = "center"
+// console.log("img",homepageData.homePageImageUrl1)
+
 if (homepageData && homepageData.showServiceSection === true) {
 	const servicesData = JSON.parse(
 		sessionStorage.getItem("productsAndServicesData")
