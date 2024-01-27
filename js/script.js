@@ -47,11 +47,11 @@ if (hasGallery === "true") {
 
 const homepageData = getHomepageDataFromSessionStorage();
 
-const backgroundImage = document.getElementById("backgroundImage")
-backgroundImage.style.background = `url('${homepageData.homePageImageUrl1}')`
+const backgroundImage = document.getElementById("backgroundImage");
+backgroundImage.style.background = `url('${homepageData.homePageImageUrl1}')`;
 backgroundImage.style.objectFit = 'fill';
-backgroundImage.style.backgroundRepeat = "no-repeat"
-backgroundImage.style.backgroundPosition = "center"
+backgroundImage.style.backgroundRepeat = "no-repeat";
+backgroundImage.style.backgroundPosition = "center";
 // console.log("img",homepageData.homePageImageUrl1)
 
 if (homepageData && homepageData.showServiceSection === true) {

@@ -161,22 +161,22 @@ async function servicesAndProducts() {
 			totfdCollection,
 			"ProductsAndServices"
 		);
-		// getDoc(productsAndServicesDocRef).then((doc) => {
-		// 	const servicesDropdownMenu = document.getElementById("servicesDropdownMenu");
-		// 	const services = doc.data().services; 
-		// 	console.log("hello",services)
+		getDoc(productsAndServicesDocRef).then((doc) => {
+			const servicesDropdownMenu = document.getElementById("servicesDropdownMenu");
+			const services = doc.data().services; 
+			// console.log("hello",services)
 		
-		// 	// Loop through the services array and create anchor tags dynamically
-		// 	services.forEach((service, index) => {
-		// 		const dropdownItem = document.createElement("a");
-		// 		dropdownItem.href = `service.html?#serviceBox_${index}`;
-		// 		dropdownItem.classList.add("dropdown-item");
-		// 		dropdownItem.textContent = service.title;
+			// Loop through the services array and create anchor tags dynamically
+			services.forEach((service, index) => {
+				const dropdownItem = document.createElement("a");
+				dropdownItem.href = `service.html?#serviceBox_${index}`;
+				dropdownItem.classList.add("dropdown-item");
+				dropdownItem.textContent = service.title;
 		
-		// 		// Append the dynamically created anchor tag to the dropdown menu
-		// 		servicesDropdownMenu.appendChild(dropdownItem);
-		// 	});
-		// });
+				// Append the dynamically created anchor tag to the dropdown menu
+				servicesDropdownMenu.appendChild(dropdownItem);
+			});
+		});
 		if (homePageData && homePageData.showServiceSection) {
 			const docSnapshot = await getDoc(productsAndServicesDocRef);
 			const productsAndServicesData = docSnapshot.data();
