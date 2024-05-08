@@ -106,7 +106,7 @@ function getHomePageDataFromFirestoreAndSave() {
 						col.setAttribute("data-wow-delay", 0.2 * (index + 1) + "s");
 
 						const pointElement = document.createElement("div"); // Use a div instead of h5
-						pointElement.className = "mb-3 d-flex align-items-start"; // Add d-flex and align-items-start classes
+						pointElement.className = "mb-3 d-flex align-items-start fw-bold"; // Add d-flex and align-items-start classes
 
 						// Add the icon to the pointElement using addIconToElement function
 						addIconToElement(pointElement)
@@ -943,7 +943,7 @@ document
 
 			emailjs.init("2lPToPbLczjJAp1J8");
 			const templateParams = {
-				to_email: "info@mbpvtltd.com",
+				to_email: "info@orrosys.com",
 				from_name: name,
 				from_email: email || "Not Provided",
 				mobile_number: mobile || "Not Provided",

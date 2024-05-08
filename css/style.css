@@ -9,8 +9,8 @@
 #logoimage {
 	padding: 5px;
 	margin: auto;
-	height: 100px;
-	width: 100px;
+	height: 70px;
+	width: 70px;
 }
 
 /*** Spinner ***/
@@ -128,14 +128,28 @@ h6,
 	padding-right: 0;
 	text-align: center;
 }
+@media (max-width: 767.98px) {
+	.hero-description{
+		font-size: 1rem;
+	}
+
+	.marquee-container{
+		height: 80px;
+	}
+
+	.marquee-container > marquee > img{
+		height: 70px;
+		width: 70px;
+	}
+  }
 
 /*** Navbar ***/
 .navbar-dark .navbar-nav .nav-link {
 	/* font-family: "Nunito", sans-serif; */
 	position: relative;
 	margin-left: 25px;
-	padding: 35px 0;
-	color: #ffffff;
+	/* padding: 35px 0; */
+	color: #000;
 	/* font-size: 18px; */
 	font-weight: 600;
 	outline: none;

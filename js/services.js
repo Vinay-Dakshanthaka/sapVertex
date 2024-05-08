@@ -147,24 +147,26 @@ async function populateServiceContainer() {
         const serviceBoxId = `serviceBox_${index}`;
         const serviceBox = document.createElement("div");
         serviceBox.id = serviceBoxId;  // Set the id
-        serviceBox.classList.add("container-fluid", "wow", "py-5", "fadeInUp", "product-border");
+        serviceBox.classList.add("container-fluid", "wow", "py-3", "fadeInUp", "product-border");
         
         serviceBox.dataset.wowDelay = `${0.3 * (index + 1)}s`;
 
         const serviceContainer = document.createElement("div");
+        serviceContainer.style.padding = "0px"
         serviceContainer.classList.add("container", "py-2");
 
         const servicesRow = document.createElement("div");
         servicesRow.classList.add("row", "g-5");
 
         const serviceColumn = document.createElement("div");
-        serviceColumn.classList.add("col-lg-7");
+        serviceColumn.classList.add("col-lg-8");
 
         const serviceTitle = document.createElement("h4");
         serviceTitle.classList.add("fw-bold", "text-primary", "text-uppercase");
         serviceTitle.textContent = service.title;
 
         const serviceDesp = document.createElement("p");
+        serviceDesp.style.fontSize = "18px"
         serviceDesp.classList.add("font-weight-bold");
         serviceDesp.textContent = service.description;
         serviceTitle.style.overflow = "hidden";
@@ -179,6 +181,7 @@ async function populateServiceContainer() {
                 col.setAttribute("data-wow-delay", 0.2 * (index + 1) + "s");
 
                 const pointElement = document.createElement("div");
+                pointElement.style.fontSize = "18px"
                 pointElement.className = "mb-3 d-flex align-items-start";
 
                 // Add the icon to the pointElement using addIconToElement function
@@ -221,17 +224,18 @@ async function populateServiceContainer() {
 
 
         const imageColumn = document.createElement("div");
-        imageColumn.classList.add("col-lg-5");
+        imageColumn.classList.add("col-lg-4");
 
         const imageBox = document.createElement("div");
         imageBox.classList.add("position-relative", "w-100", "h-100");
 
         const image = document.createElement("img");
         image.src = service.serviceImageUrl;
-        image.style.maxWidth = "100%";
-        image.style.height = "100%";
+        image.style.width = "100%";
+        image.style.height = "80%";
         image.style.padding = "0 10px 10px 10px";
-        image.style.borderRadius = "10px";
+        // image.style.borderRadius = "10px";
+        // image.style.objectFit = "contain"
         image.alt = "image";
         imageBox.appendChild(image);
         imageColumn.appendChild(imageBox);
@@ -240,9 +244,6 @@ async function populateServiceContainer() {
         serviceContainer.appendChild(servicesRow);
         serviceBox.appendChild(serviceContainer);
         allServiceContainer.appendChild(serviceBox);
-
-
-
         });
 
 }

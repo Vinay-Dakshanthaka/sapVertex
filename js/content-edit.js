@@ -445,12 +445,12 @@ async function saveProductsData() {
 		try {
 			// Fetch existing data from Firestore
 			const existingData = await getDoc(productsAndServicesDocRef);
-			const existingProducts = existingData.exists() ? existingData.data().products : [];
+			const existingProducts = existingData.exists() ? existingData.data().products || [] : [];
 
 			// Identify new products by checking for duplicate titles
 			const newProducts = productData.products.filter(newProduct => {
-				return !existingProducts.some(existingProduct => existingProduct.title === newProduct.title);
-			});
+				return existingProducts && !existingProducts.some(existingProduct => existingProduct.title === newProduct.title);
+			});			
 
 			// Merge existing data with new data (only new products)
 			const mergedProducts = existingProducts.concat(newProducts);
@@ -780,12 +780,12 @@ async function saveServicesData() {
 		try {
 			// Fetch existing data from Firestore
 			const existingData = await getDoc(productsAndServicesDocRef);
-			const existingServices = existingData.exists() ? existingData.data().services : [];
+			const existingServices = existingData.exists() ? existingData.data().services || [] : [];
 
 			// Identify new products by checking for duplicate titles
 			const newServices = serviceData.services.filter(newService => {
-				return !existingServices.some(existingService => existingService.title === newService.title);
-			});
+				return existingServices && !existingServices.some(existingService => existingService.title === newService.title);
+			});			
 
 			// Merge existing data with new data (only new products)
 			const mergeServices = existingServices.concat(newServices);

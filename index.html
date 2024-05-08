@@ -38,51 +38,56 @@
 			padding: 0;
 			box-sizing: border-box;
 		}
+
 		.marquee-container {
-      white-space: nowrap;
-      overflow: hidden;
-      position: relative;
-	  background:rgb(66, 66, 223);
-	  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.35);
-	  border-radius: 10px;
+			white-space: nowrap;
+			overflow: hidden;
+			position: relative;
+			background: rgb(66, 66, 223);
+			box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.35);
+			border-radius: 10px;
 
-    }
+		}
 
-    .marquee-content {
-      display: inline-block;
-      animation: marqueeAnimation 7s linear infinite;
-	  font-size: 1.5rem;
-	  font-weight: bolder;
-	  color: white;
-	  font-family: cursive;
-	  text-shadow: 0px 8px 8px rgba(0, 0, 0, 0.35);
-    }
-	.gifImg{
-		filter: drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.5)); 
-	}
-    .sticker {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      transform: translate(0, -50%);
-      background-color: #f00;
-      color: #fff;
-      padding: 5px;
-	  font-size: 1.2rem;
-	  display: block;
-	  margin-left: -4rem;
-	  border-radius: 20px; 
-    }
-	
+		.marquee-content {
+			display: inline-block;
+			animation: marqueeAnimation 7s linear infinite;
+			font-size: 1.5rem;
+			font-weight: bolder;
+			color: white;
+			font-family: cursive;
+			text-shadow: 0px 8px 8px rgba(0, 0, 0, 0.35);
+		}
 
-    @keyframes marqueeAnimation {
-      from {
-        translateX:(100%) ;
-      }
-      to {
-        translateX:(-100%) ;
-      }
-    }
+		.gifImg {
+			filter: drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.5));
+		}
+
+		.sticker {
+			position: absolute;
+			top: 50%;
+			left: 0;
+			transform: translate(0, -50%);
+			background-color: #f00;
+			color: #fff;
+			padding: 5px;
+			font-size: 1.2rem;
+			display: block;
+			margin-left: -4rem;
+			border-radius: 20px;
+		}
+
+
+		@keyframes marqueeAnimation {
+			from {
+				translateX: (100%);
+			}
+
+			to {
+				translateX: (-100%);
+			}
+		}
+
 		.biogas {
 			display: flex;
 			justify-content: center;
@@ -406,69 +411,72 @@
 	<!-- Spinner End -->
 
 	<!-- Topbar Start -->
-	<!-- <div class="container-fluid bg-dark px-5 d-none d-lg-block">
-        <div class="row gx-0">
-            <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
-                <div class="d-inline-flex align-items-center" style="height: 45px;">
-                    <small class="me-3 text-light"><i class="fa fa-map-marker-alt me-2"></i>123 Street, New York,
-                        USA</small>
-                    <small class="me-3 text-light"><i class="fa fa-phone-alt me-2"></i>+012 345 6789</small>
-                    <small class="text-light"><i class="fa fa-envelope-open me-2"></i>info@example.com</small>
-                </div>
-            </div>
-            <div class="col-lg-4 text-center text-lg-end">
-                <div class="d-inline-flex align-items-center" style="height: 45px;">
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="#"><i
-                            class="fab fa-twitter fw-normal"></i></a>
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="#"><i
-                            class="fab fa-facebook-f fw-normal"></i></a>
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="#"><i
-                            class="fab fa-linkedin-in fw-normal"></i></a>
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="#"><i
-                            class="fab fa-instagram fw-normal"></i></a>
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle" href="#"><i
-                            class="fab fa-youtube fw-normal"></i></a>
-                </div>
-            </div>
-        </div>
-    </div> -->
+	<div class="container-fluid bg-dark px-5 d-none d-lg-block text-center">
+		<div class="row gx-0 text-center">
+			<div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
+				<div class="d-inline-flex align-items-center" style="height: 45px;">
+					<small class="me-3 text-light"><i class="fa fa-map-marker-alt me-2"></i>#2, BTM Layout 2nd Stage, 
+						Bangalore - 560076, India</small>
+					
+				</div>
+			</div>
+			<div class="col-lg-4 text-center text-lg-end">
+				<div class="d-inline-flex align-items-center" style="height: 45px;">
+					<!-- <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="#"><i
+							class="fab fa-twitter fw-normal"></i></a>
+					<a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="#"><i
+							class="fab fa-facebook-f fw-normal"></i></a>
+					<a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="#"><i
+							class="fab fa-linkedin-in fw-normal"></i></a>
+					<a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="#"><i
+							class="fab fa-instagram fw-normal"></i></a>
+					<a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle" href="#"><i
+							class="fab fa-youtube fw-normal"></i></a> -->
+					<small class="me-3 text-light"><i class="fa fa-phone-alt me-2"></i>+91 95663 99958</small>
+					<small class="text-light"><i class="fa fa-envelope-open me-2"></i>info@orrosys.com</small>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
 	<!-- Topbar End -->
 
 	<!-- Navbar & Carousel Start -->
 	<div class="container-fluid position-relative p-0">
-		<nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
+		<nav class="navbar navbar-expand-lg navbar-dark px-5 py-lg-0">
 			<a href="index.html" class="navbar-brand p-0">
-				<img id="logoimage" alt="logo" />
+				<p id="logoimage" alt="logo" width="80px" height="80px" ></p>
 				<!-- <h1 class="m-0">TOT FD</h1> -->
 			</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
 				<span class="fa fa-bars"></span>
 			</button>
-			<div class="collapse navbar-collapse" id="navbarCollapse">
-				<div class="navbar-nav ms-auto py-0">
+			<div class="collapse navbar-collapse justify-content-center" id="navbarCollapse">
+				<div class="navbar-nav">
 					<a href="./index.html" class="nav-item nav-link active">Home</a>
 					<a href="./about.html" class="nav-item nav-link">About Us</a>
 					<!-- <a href="./service.html" class="nav-item nav-link" id="services" style="display: none">Our
 						Services</a> -->
-						<div class="nav-item dropdown">
-							<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
-							id="services">Courses</a>
-							<div class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start m-0" id="servicesDropdownMenu">
-								
-							</div>
+					<div class="nav-item dropdown">
+						<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" id="services">Courses</a>
+						<div class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start m-0"
+							id="servicesDropdownMenu">
+
 						</div>
-					<a href="./ProductsClient.html" class="nav-item nav-link" id="clients" style="display: none">Clients
-					</a>
+					</div>
+					<!-- <a href="./ProductsClient.html" class="nav-item nav-link" id="clients" style="display: none">Clients
+					</a> -->
 					<a href="./products.html" class="nav-item nav-link" id="products" style="display: none">Our
 						Products</a>
-					<a href="./clients.html" class="nav-item nav-link " id="Certifications"
-						style="display: none">Certifications</a>
+					<!-- <a href="./clients.html" class="nav-item nav-link " id="Certifications"
+						style="display: none">Certifications</a> -->
 
 					<a href="./founders.html" class="nav-item nav-link" id="founders" style="display: none">Founders
 						Section</a>
 					<a href="./payments.html" class="nav-item nav-link" id="payments" style="display: none">Payments</a>
 					<a href="./contact.html" class="nav-item nav-link">Contact Us</a>
-					<div class="nav-item dropdown">
+					<div class="nav-item dropdown" style="display: none;">
 						<a href="#" class="nav-link dropdown-toggle" id="more" data-bs-toggle="dropdown"
 							style="display: none">More</a>
 						<div class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start m-0">
@@ -481,12 +489,12 @@
 								style="display: none">Careers</a>
 						</div>
 					</div>
-					<a href="./login.html" class="nav-item nav-link" id="login">Login</a>
+					<!-- <a href="./login.html" class="nav-item nav-link" id="login">Login</a> -->
 					<div class="nav-item dropdown">
 						<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" id="adminActivites"
 							style="display: none">Admin Activities</a>
-						     <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start m-0"
-              style="max-height: 540px; max-width: 185px; overflow-y: auto">
+						<div class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start m-0"
+							style="max-height: 540px; max-width: 185px; overflow-y: auto">
 							<a href="./content-edit.html" class="dropdown-item">Change Website Content <br />Services
 								and Products</a>
 							<a href="./leads.html" class="dropdown-item">Leads</a>
@@ -494,12 +502,10 @@
 							<a href="./careerLeads.html" class="dropdown-item">Carrer Leads</a>
 							<a href="./add-gallery.html" class="dropdown-item">Add Brochure Images</a>
 							<a href="./list-gallery.html" class="dropdown-item">List Brochure Images</a>
-							<a href="./uploadContact.html" class="dropdown-item">
-								Upload Contact Info</a>
+							<a href="./uploadContact.html" class="dropdown-item">Upload Contact Info</a>
 							<a href="uploadVideo.html" class="dropdown-item">Upload Video</a>
 							<a href="./uploadProductClient.html" class="dropdown-item">Upload client</a>
-							<a href="uploadPayment.html" class="dropdown-item">
-								Upload Payment Info</a>
+							<a href="uploadPayment.html" class="dropdown-item">Upload Payment Info</a>
 							<a href="upload-logo.html" class="dropdown-item">Upload Logo</a>
 							<a href="./uploadHomePageImg.html" class="dropdown-item">Upload Home Page<br />Image</a>
 							<a href="./selectLogo.html" class="dropdown-item">Select Logo</a>
@@ -519,49 +525,56 @@
 				</div>
 			</div>
 		</nav>
-
-		<div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000">
-			<div class="carousel-inner">
-				<div class="carousel-item mobile-styling active">
-					<img class="w-100" alt="Image" id="homePageImage" />
-					<div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-						<div class="p-3" style="max-width: 900px">
-							<h1 class="display-1 text-white mb-md-4 animated zoomIn" id="webAppName1">
-							</h1>
-							<h5 class="text-white text-uppercase mb-md-4 animated zoomIn" id="homePageWelcome"></h5>
-							<a id="whatsappButton2"
-								class="btn btn-success py-md-3 px-md-5 me-3 animated slideInLeft">WhatsApp</a>
-							<a href="contact.html"
-								class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Contact
-								Us</a>
-						</div>
-					</div>
-				</div>
-				<div class="carousel-item">
-					<img class="w-100" alt="Image" id="homePageImage2" />
-					<div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-						<div class="p-3" style="max-width: 900px">
-							<h1 class="display-1 text-white mb-md-4 animated zoomIn" id="webAppName2"></h1>
-							<h5 class="text-white text-uppercase mb-3 animated slideInDown" id="homePageCaption"></h5>
-							<a id="whatsappButton"
-								class="btn btn-success py-md-3 px-md-5 me-3 animated slideInLeft">WhatsApp</a>
-							<a href="contact.html"
-								class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Contact
-								Us</a>
-						</div>
-					</div>
+	</div>
+	<div class="container row mt-5 mx-auto">
+		<div class="col-lg-6 d-flex align-items-center justify-content-center">
+			<div class="text-center">
+				<p class="lead">Get In Touch</p>
+				<h2 class="mb-4">CALL +91 95663 99958</h2>
+				<div class="d-flex justify-content-center">
+					<a id="whatsappButton" class="btn btn-success me-3">WhatsApp</a>
+					<a href="contact.html" class="btn btn-outline-light btn-dark">Contact Us</a>
 				</div>
 			</div>
-			<button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Previous</span>
-			</button>
-			<button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Next</span>
-			</button>
+		</div>
+		<div class="col-lg-6">
+			<div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000">
+				<div class="carousel-inner">
+					<div class="carousel-item mobile-styling active mt-5">
+						<img class="w-100 img-fluid rounded shadow" alt="Image" id="homePageImage" style="width: 100%; height: 400px;"/>
+						<div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+							<div class="p-3" style="max-width: 900px">
+								<h1 class="display-6 text-white mb-md-4 animated zoomIn" id="webAppName1"></h1>
+								<h5 class="text-white text-uppercase mb-md-4 animated zoomIn" id="homePageWelcome"></h5>
+							</div>
+						</div>
+					</div>
+					<div class="carousel-item mt-5">
+						<img class="w-100 img-fluid rounded shadow" alt="Image" id="homePageImage2" style="width: 300px; height: 400px;" />
+						<div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+							<div class="p-3" style="max-width: 900px">
+								<h1 class="display-6 text-white mb-md-4 animated zoomIn" id="webAppName2"></h1>
+								<h5 class="text-white text-uppercase mb-3 animated slideInDown" id="homePageCaption"></h5>
+							</div>
+						</div>
+					</div>
+				</div>
+				<button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+			</div>
 		</div>
 	</div>
+	<!-- <div class="container d-flex flex-column align-items-center justify-content-center">
+		<a id="whatsappButton2" class="btn btn-success py-md-3 px-md-5 me-3 animated slideInLeft">WhatsApp</a>
+		<a href="contact.html" class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Contact
+			Us</a>
+	</div> -->
 	<br>
 	<!-- Navbar & Carousel End -->
 	<!-- Notification ticker starts------ -->
@@ -666,30 +679,38 @@
 		</div> -->
 	<!-- Facts Start -->
 
-	<div class="marquee-container">
-		<marquee behavior="" direction="">
-		<img src="./img/computer.gif" alt="" width="80px" height="80px" class="gifImg">
+	<div class="container">
+		<p class="display-5 text-center hero-description"  style="color: #FF7F50;">TOP SAP TRAINING CENTER IN BENGALURU <br> SAP VERTEX</p>
+	</div>
 
-		<div class="marquee-content" id="specialofferMessage">
-		 
-		</div>
-		<!-- <div class="sticker">New!</div> -->
-		<img src="./img/computer.gif" alt="" width="80px" height="80px" class="gifImg">
-	</marquee>
-	  </div>
+	<div class="marquee-container" style="display: none;">
+		<marquee behavior="" direction="">
+			<img src="./img/computer.gif" alt="" width="80px" height="80px" class="gifImg">
+
+			<div class="marquee-content" id="specialofferMessage">
+
+			</div>
+			<div class="sticker">New!</div>
+			<img src="./img/computer.gif" alt="" width="80px" height="80px" class="gifImg">
+		</marquee>
+	</div>
 
 	<!-- About Start -->
-	<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s" id="aboutUsContainer">
-		<div class="container py-5">
+	<div class="container-fluid py-2 wow fadeInUp" data-wow-delay="0.1s" id="aboutUsContainer">
+		<div class="container py-2">
 			<div class="row g-5">
 				<div class="col-lg-7">
-					<div class="section-title position-relative pb-3 mb-5">
+					<div class="section-title position-relative pb-3 my-2">
 						<h4 class="fw-bold text-primary text-uppercase">About Us</h4>
 						<h1 class="mb-0" id="aboutUsHeader"></h1>
 					</div>
-					<p class="mb-4" id="aboutUsCaption"></p>
-					<p class="mb-4" id="aboutUsCaption2"></p>
-					<div class="row g-0 mb-3" id="aboutUsPoints">
+					<p class="my-2 lead" id="aboutUsCaption">
+						<!-- content will be dynamically added here  -->
+					</p>
+					<p class="mb-4 lead" id="aboutUsCaption2">
+						<!-- content will be dynamically added here  -->
+					</p>
+					<div class="row g-0 my-2" id="aboutUsPoints">
 						<!-- Points will be dynamically added here -->
 					</div>
 					<h3 class="mb-0" id="aboutUsFooter"></h3>
@@ -698,8 +719,8 @@
 				</div>
 				<div class="col-lg-5" style="min-height: 500px">
 					<div class="position-relative h-100">
-						<img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s"
-							id="aboutUsImage" style="object-fit: cover" />
+						<img class="position-absolute w-100 h-100 rounded wow zoomIn " data-wow-delay="0.9s"
+							id="aboutUsImage" style="object-fit: contain" />
 					</div>
 				</div>
 			</div>
@@ -734,7 +755,7 @@
 	</div>
 
 	<!-- Service Start -->
-	<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s" id="serviceContainer" style="display: none">
+	<div class="container-fluid py-3 wow fadeInUp" data-wow-delay="0.1s" id="serviceContainer" style="display: none">
 		<div class="container py-5">
 			<!-- modal starts -->
 			<div id="serviceModal" class="modal">
@@ -878,24 +899,24 @@
 	<!-- circle static code end -->
 	<!-- Features Start -->
 
-	<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s" id="photosection">
-		<div class="container py-5 mb-5">
+	<div class="container-fluid py-2 wow fadeInUp" data-wow-delay="0.1s" id="photosection">
+		<div class="container py-2 my-2">
 			<div class="bg-white">
 				<div class="owl-carousel photosection" id="photo-carousel">
-					<div><img src="./img/i-1.jpeg" alt="Image 1"></div>
-					<div><img src="./img/i-2.jpeg" alt="Image 1"></div>
-					<div><img src="./img/i-9.jpeg" alt="Image 1"></div>
-					<div><img src="./img/i-4.jpeg" alt="Image 1"></div>
-					<div><img src="./img/i-5.jpeg" alt="Image 1"></div>
-					<div><img src="./img/i-6.jpeg" alt="Image 1"></div>
-					<div><img src="./img/i-7.jpeg" alt="Image 1"></div>
-					<div><img src="./img/i-8.jpeg" alt="Image 1"></div>
-					<div><img src="./img/i-3.jpeg" alt="Image 1"></div>
-					<div><img src="./img/i-10.jpeg" alt="Image 1"></div>
-					<div><img src="./img/i-11.jpeg" alt="Image 1"></div>
-					<div><img src="./img/i-13.jpeg" alt="Image 1"></div>
+					<div><img src="./sapImages/i-1.jpeg" alt="Image 1"></div>
+					<div><img src="./sapImages/i-2.jpeg" alt="Image 1"></div>
+					<div><img src="./sapImages/i-9.jpeg" alt="Image 1"></div>
+					<div><img src="./sapImages/i-4.jpeg" alt="Image 1"></div>
+					<div><img src="./sapImages/i-5.jpeg" alt="Image 1"></div>
+					<div><img src="./sapImages/i-6.jpeg" alt="Image 1"></div>
+					<div><img src="./sapImages/i-7.jpeg" alt="Image 1"></div>
+					<div><img src="./sapImages/i-8.jpeg" alt="Image 1"></div>
+					<div><img src="./sapImages/i-3.jpeg" alt="Image 1"></div>
+					<div><img src="./sapImages/i-10.jpeg" alt="Image 1"></div>
+					<div><img src="./sapImages/i-11.jpeg" alt="Image 1"></div>
+					<!-- <div><img src="./img/i-13.jpeg" alt="Image 1"></div>
 					<div><img src="./img/i-12.jpeg" alt="Image 1"></div>
-					<div><img src="./img/i-14.jpeg" alt="Image 1"></div>
+					<div><img src="./img/i-14.jpeg" alt="Image 1"></div> -->
 				</div>
 			</div>
 		</div>
@@ -1003,7 +1024,7 @@
 	<!-- Quote End -->
 
 	<!-- video starts -->
-	<div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px">
+	<!-- <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px">
 		<h5 class="fw-bold text-primary text-uppercase" id="teamTitle">
 		</h5>
 		<h1 class="mb-0" id="teamSubtitle">
@@ -1017,21 +1038,21 @@
 				Your browser does not support the video tag.
 			</video>
 			<!-- <button type="button" id="playButton1">Play Video 1</button> -->
-		</div>
+		<!-- </div>
 
 		<div>
 			<video controls width="500" height="300" id="videoPlayer2">
 				<source src="" type="video/mp4" />
 				Your browser does not support the video tag.
-			</video>
+			</video> -->
 			<!-- <button type="button" id="playButton2">Play Video 2</button> -->
-		</div>
-	</div>
+		<!-- </div>
+	</div> --> 
 	<!-- video ends -->
 
 
 	<!-- Testimonial Start -->
-	<div id="reviewSection" style="display: none" class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+	<div id="reviewSection" style="display: none" class="container-fluid py-2 wow fadeInUp" data-wow-delay="0.1s">
 		<div class="container py-5">
 			<div class="section-title text-center position-relative pb-3 mb-4 mx-auto" style="max-width: 600px">
 				<!-- <h5 class="fw-bold text-primary text-uppercase"></h5> -->
@@ -1115,7 +1136,7 @@
 							</div>
 							<div class="d-flex  mb-2 phone-section2">
 								<i class="bi bi-telephone text-primary me-2"></i>
-								<p class="mb-0 contact-data2"></p>
+								<p class="mb-0 contact-data2">9566399958</p>
 								<p class="mb-0 contact-data3"></p>
 								<p class="mb-0 contact-data4"></p>
 							</div>
