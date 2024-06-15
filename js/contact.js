@@ -173,7 +173,7 @@ function showButtonsAndMaps(data) {
 		document
 			.getElementById("whatsappButton")
 			.addEventListener("click", function () {
-				const message = "Hello! I want to inquire about your products.";
+				const message = "Hello! I want to inquire about your Courses.";
 				window.open(
 					`https://wa.me/${mobileNumber}?text=${encodeURIComponent(message)}`
 				);

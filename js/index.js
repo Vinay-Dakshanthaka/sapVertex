@@ -446,7 +446,7 @@ function getDataFromFirestoreAndSave() {
 					document
 						.getElementById("whatsappButton")
 						.addEventListener("click", function () {
-							const message = "Hello! I want to inquire about your products.";
+							const message = "Hello! I want to inquire about your Courses.";
 							window.open(
 								`https://wa.me/${mobile}?text=${encodeURIComponent(message)}`
 							);
@@ -943,7 +943,7 @@ document
 
 			emailjs.init("2lPToPbLczjJAp1J8");
 			const templateParams = {
-				to_email: "info@orrosys.com",
+				to_email: "info@amfosys.com",
 				from_name: name,
 				from_email: email || "Not Provided",
 				mobile_number: mobile || "Not Provided",

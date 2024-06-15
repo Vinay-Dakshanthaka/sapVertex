@@ -7,11 +7,28 @@
 	--dark: #091e3e;
 }
 #logoimage {
-	padding: 5px;
+	/* padding: 5px; */
 	margin: auto;
-	height: 70px;
-	width: 70px;
-}
+	height: 60px;
+	width: 90px;
+	/* Add these styles to highlight the image */
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+	border-radius: 5px;
+	background-color: #FFFFFF; /* White background */
+	padding: 1px;
+  }
+
+#footerLogoImage {
+	/* padding: 5px; */
+	margin: auto;
+	height: 100px;
+	width: 150px;
+	/* Add these styles to highlight the image */
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+	border-radius: 5px;
+	background-color: #FFFFFF; /* White background */
+	padding: 1px;
+  }
 
 /*** Spinner ***/
 .spinner {
@@ -21,6 +38,10 @@
 	margin: 100px auto;
 	-webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
 	animation: sk-rotateplane 1.2s infinite ease-in-out;
+}
+/**** Topbar ****/
+#bar{
+	border-bottom: 1px solid white;
 }
 .social-buttons a {
 	background-color: var(--secondary);
@@ -149,16 +170,18 @@ h6,
 	position: relative;
 	margin-left: 25px;
 	/* padding: 35px 0; */
-	color: #000;
+	color: #fff;
 	/* font-size: 18px; */
 	font-weight: 600;
 	outline: none;
 	transition: 0.5s;
+	background-color: #091E3E;
 }
 
 .sticky-top.navbar-dark .navbar-nav .nav-link {
 	padding: 20px 0;
-	color: var(--dark);
+	color: var(--light);
+	background-color: #091E3E;
 }
 
 .navbar-dark .navbar-nav .nav-link:hover,
@@ -167,7 +190,7 @@ h6,
 }
 
 .navbar-dark .navbar-brand h1 {
-	color: #ffffff;
+	color: #091E3E;
 }
 
 .navbar-dark .navbar-toggler {
@@ -178,14 +201,14 @@ h6,
 @media (max-width: 991.98px) {
 	.sticky-top.navbar-dark {
 		position: relative;
-		background: #ffffff;
+		background: #091E3E;
 	}
 
 	.navbar-dark .navbar-nav .nav-link,
 	.navbar-dark .navbar-nav .nav-link.show,
 	.sticky-top.navbar-dark .navbar-nav .nav-link {
 		padding: 10px 0;
-		color: var(--dark);
+		color: var(--light);
 	}
 
 	.navbar-dark .navbar-brand h1 {
@@ -201,11 +224,12 @@ h6,
 		left: 0;
 		border-bottom: 1px solid rgba(256, 256, 256, 0.1);
 		z-index: 999;
+		background-color: #091E3E;
 	}
 
 	.sticky-top.navbar-dark {
 		position: fixed;
-		background: #ffffff;
+		background: #091E3E;
 	}
 
 	.navbar-dark .navbar-nav .nav-link::before {
@@ -246,13 +270,19 @@ h6,
 
 @media (max-width: 576px) {
   .carousel-caption h5 {
-      font-size: 14px;
+      /* font-size: 14px; */
+      font-size: 3rem;
       font-weight: 500 !important;
   }
 
   .carousel-caption h1 {
       font-size: 30px;
       font-weight: 600 !important;
+  }
+  .navbar-dark .navbar-nav .nav-link{
+	background-color: var(--light);
+	color: var(--dark);
+	padding: 5px 0;
   }
 }
 
