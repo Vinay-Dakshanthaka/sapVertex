@@ -516,7 +516,7 @@
 				<p id="logoimage" alt="logo" width="80px" height="80px" ></p>
 			</a> -->
 			<a href="index.html" class="navbar-brand p-0">
-				<img id="logoimage" alt="logo" class="rounded"/>
+				<img id="logoimage" alt="logo" class="rounded" style="clip-path: polygon(19% 31%, 82% 30%, 82% 79%, 19% 79%); scale: 1.8; border-radius: 50%;"/>	
 				<!-- <h1 class="m-0">TOT FD</h1> -->
 			  </a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -596,7 +596,7 @@
 			</div>
 		</nav>
 	</div>
-	<div class="container row mt-5 mx-auto">
+	<div class="container row mt-5 mx-auto" id="hero-section">
 		<div class="col-lg-6 d-flex align-items-center justify-content-center">
 			<div class="text-center">
 				<p class="lead">Get In Touch</p>
@@ -785,7 +785,7 @@
 					<a href="contact.html" class="btn btn-primary py-3 px-5 mt-3 wow zoomIn" data-wow-delay="0.9s">Contact Us</a>
 					</div>
 				</div>
-				<div class="col-lg-5 d-flex align-items-center justify-content-center" style="min-height: 500px;">
+				<div class="col-lg-5 d-flex align-items-center justify-content-center" style="min-height: fit-content;" id="imageContainer">
 					<img class="w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s" id="aboutUsImage" src="path/to/your/image.jpg" alt="About Us Image" style="object-fit: contain;" />
 				</div>
 			</div>
@@ -969,8 +969,8 @@
 	<!-- circle static code end -->
 	<!-- Features Start -->
 
-	<div class="container-fluid py-2 wow fadeInUp" data-wow-delay="0.1s" id="photosection">
-		<div class="container py-2 my-2">
+	<div class="container-fluid py-2 wow fadeInUp t-2" data-wow-delay="0.1s" id="photosection">
+		<div class="container py-2">
 			<div class="bg-white">
 				<div class="owl-carousel photosection" id="photo-carousel">
 					<div><img src="./sapImages/i-1.jpeg" alt="Image 1"></div>
@@ -991,6 +991,17 @@
 			</div>
 		</div>
 	</div>
+
+	<div id="reviewSection" class="container-fluid py-2 wow fadeInUp" data-wow-delay="0.1s" style="display: none;">
+        <div class="container py-2">
+            <div class="section-title text-center position-relative pb-3 mb-4 mx-auto" style="max-width: 600px">
+                <h1 class="mb-0">Students Reviews</h1>
+            </div>
+            <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.6s" id="testimonial-carousel">
+                <!-- Reviews will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
 
 
 	<!-- Quote Start -->
@@ -1122,17 +1133,59 @@
 
 
 	<!-- Testimonial Start -->
-	<div id="reviewSection" style="display: none" class="container-fluid py-2 wow fadeInUp" data-wow-delay="0.1s">
+	<!-- <div id="reviewSection"  class="container-fluid py-2 wow fadeInUp" data-wow-delay="0.1s">
 		<div class="container py-5">
 			<div class="section-title text-center position-relative pb-3 mb-4 mx-auto" style="max-width: 600px">
-				<!-- <h5 class="fw-bold text-primary text-uppercase"></h5> -->
 				<h1 class="mb-0">Students Placed</h1>
 			</div>
 			<div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.6s" id="testimonial-carousel">
-				<!-- Testimonial items will be dynamically added here -->
 			</div>
 		</div>
-	</div>
+	</div> -->
+
+	<!-- <div id="reviewSectionn" class="container-fluid py-2 wow fadeInUp" data-wow-delay="0.1s">
+		<div class="container py-5">
+			<div class="section-title text-center position-relative pb-3 mb-4 mx-auto" style="max-width: 600px">
+				<h1 class="mb-0">Students Placed ddddd</h1>
+			</div>
+			<div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.6s" id="testimonial-carousel">
+				<div class="testimonial-item bg-light">
+					<div class="d-flex align-items-center border-bottom pt-5 pb-4 px-5">
+						<img class="img-fluid rounded" src="https://example.com/john-doe.jpg" alt="John Doe">
+						<div class="ps-4">
+							<h4 class="text-primary mb-1">John Doe</h4>
+						</div>
+					</div>
+					<div class="pt-4 pb-5 px-5">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis libero ac ligula imperdiet, nec consequat lorem tempor.
+					</div>
+				</div>
+				<div class="testimonial-item bg-light">
+					<div class="d-flex align-items-center border-bottom pt-5 pb-4 px-5">
+						<img class="img-fluid rounded" src="https://example.com/jane-smith.jpg" alt="Jane Smith">
+						<div class="ps-4">
+							<h4 class="text-primary mb-1">Jane Smith</h4>
+						</div>
+					</div>
+					<div class="pt-4 pb-5 px-5">
+						Sed euismod leo vitae nisi consectetur, sit amet dapibus elit placerat. Quisque fermentum auctor est, non lobortis leo suscipit ac.
+					</div>
+				</div>
+				<div class="testimonial-item bg-light">
+					<div class="d-flex align-items-center border-bottom pt-5 pb-4 px-5">
+						<img class="img-fluid rounded" src="https://example.com/michael-brown.jpg" alt="Michael Brown">
+						<div class="ps-4">
+							<h4 class="text-primary mb-1">Michael Brown</h4>
+						</div>
+					</div>
+					<div class="pt-4 pb-5 px-5">
+						Aenean vehicula, lacus id pulvinar tincidunt, sapien mauris accumsan libero, id efficitur justo magna eget magna.
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> -->
+	
 
 	<!-- Testimonial End -->
 

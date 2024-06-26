@@ -9,13 +9,15 @@
 #logoimage {
 	/* padding: 5px; */
 	margin: auto;
-	height: 60px;
+	height: 65px;
 	width: 90px;
 	/* Add these styles to highlight the image */
 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 	border-radius: 5px;
 	background-color: #FFFFFF; /* White background */
 	padding: 1px;
+	clip-path: polygon(19% 31%, 82% 30%, 82% 79%, 19% 79%); 
+	scale: 1.8; border-radius: 50%;
   }
 
 #footerLogoImage {
@@ -283,6 +285,26 @@ h6,
 	background-color: var(--light);
 	color: var(--dark);
 	padding: 5px 0;
+  }
+  #hidden{
+	display: none;
+  }
+
+  #aboutUsImage{
+	height: 100%;
+  }
+  #imageContainer{
+	height: 300px !important;
+  }
+  #homePageWelcome, #homePageCaption{
+	font-size: 2rem;
+  }
+  #header-carousel, #hero-section{
+	margin: 0;
+	padding: 0;
+  }
+  #aboutUsCaption, #aboutUsCaption2{
+	text-align: justify;
   }
 }
 

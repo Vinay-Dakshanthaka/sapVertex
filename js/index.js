@@ -580,224 +580,224 @@ function getDataFromFirestoreAndSave() {
 const sessionStorageSize = JSON.stringify(sessionStorage).length;
 console.log("Session storage size:", sessionStorageSize, "bytes");
 
-document.addEventListener("DOMContentLoaded", function () {
-	const testimonialCarousel = document.querySelector(".testimonial-carousel");
-	const moreLink = document.getElementById("more");
-	const reviewSection = document.getElementById("reviewSection");
-	const reviewsLink = document.getElementById("reviews");
-	const reviewsLink2 = document.getElementById("reviews2");
-	const reviewDocRef = doc(totfdCollection, "Reviews");
+// document.addEventListener("DOMContentLoaded", function () {
+// 	const testimonialCarousel = document.querySelector(".testimonial-carousel");
+// 	const moreLink = document.getElementById("more");
+// 	const reviewSection = document.getElementById("reviewSection");
+// 	const reviewsLink = document.getElementById("reviews");
+// 	const reviewsLink2 = document.getElementById("reviews2");
+// 	const reviewDocRef = doc(totfdCollection, "Reviews");
 
-	const clientsDocRef = doc(totfdCollection, "Clients");
+// 	const clientsDocRef = doc(totfdCollection, "Clients");
 
-	//console.log("Fetching document...");
-	getDoc(reviewDocRef)
-		.then((docSnapshot) => {
-			//console.log("Document snapshot received:", docSnapshot);
-			if (docSnapshot.exists) {
-				const data = docSnapshot.data();
-				const reviewsData = data.reviews || [];
+// 	//console.log("Fetching document...");
+// 	getDoc(reviewDocRef)
+// 		.then((docSnapshot) => {
+// 			//console.log("Document snapshot received:", docSnapshot);
+// 			if (docSnapshot.exists) {
+// 				const data = docSnapshot.data();
+// 				const reviewsData = data.reviews || [];
 
-				if (Array.isArray(reviewsData) && reviewsData.length > 0) {
-					//console.log("Reviews data found:", reviewsData);
-					moreLink.style.display = "block";
-					reviewsLink.style.display = "block";
-					reviewsLink2.style.display = "block";
-					reviewSection.style.display = "block";
+// 				if (Array.isArray(reviewsData) && reviewsData.length > 0) {
+// 					//console.log("Reviews data found:", reviewsData);
+// 					moreLink.style.display = "block";
+// 					reviewsLink.style.display = "block";
+// 					reviewsLink2.style.display = "block";
+// 					reviewSection.style.display = "block";
 
-					reviewsData.forEach((review) => {
-						const testimonialItem = document.createElement("div");
-						testimonialItem.classList.add("testimonial-item", "bg-light");
+// 					reviewsData.forEach((review) => {
+// 						const testimonialItem = document.createElement("div");
+// 						testimonialItem.classList.add("testimonial-item", "bg-light");
 
-						const innerContent = `
-                            <div class="d-flex align-items-center border-bottom pt-5 pb-4 px-5">
-                                <img class="img-fluid rounded" src="${review.picUrl}" style="width: 60px; height: 60px" />
-                                <div class="ps-4">
-                                    <h4 class="text-primary mb-1">${review.name}</h4>
-                                </div>
-                            </div>
-                            <div class="pt-4 pb-5 px-5">
-                                ${review.text}
-                            </div>
-                        `;
-						testimonialItem.innerHTML = innerContent;
-						testimonialCarousel.appendChild(testimonialItem);
-						console.log("Added testimonial:", review.name);
-					});
+// 						const innerContent = `
+//                             <div class="d-flex align-items-center border-bottom pt-5 pb-4 px-5">
+//                                 <img class="img-fluid rounded" src="${review.picUrl}" style="width: 60px; height: 60px" />
+//                                 <div class="ps-4">
+//                                     <h4 class="text-primary mb-1">${review.name}</h4>
+//                                 </div>
+//                             </div>
+//                             <div class="pt-4 pb-5 px-5">
+//                                 ${review.text}
+//                             </div>
+//                         `;
+// 						testimonialItem.innerHTML = innerContent;
+// 						testimonialCarousel.appendChild(testimonialItem);
+// 						console.log("Added testimonial:", review.name);
+// 					});
 
-					$(testimonialCarousel).owlCarousel({
-						autoplay: true,
-						smartSpeed: 1500,
-						dots: true,
-						loop: true,
-						center: true,
-						responsive: {
-							0: {
-								items: 1,
-							},
-							576: {
-								items: 1,
-							},
-							768: {
-								items: 2,
-							},
-							992: {
-								items: 3,
-							},
-						},
-					});
+// 					$(testimonialCarousel).owlCarousel({
+// 						autoplay: true,
+// 						smartSpeed: 1500,
+// 						dots: true,
+// 						loop: true,
+// 						center: true,
+// 						responsive: {
+// 							0: {
+// 								items: 1,
+// 							},
+// 							576: {
+// 								items: 1,
+// 							},
+// 							768: {
+// 								items: 2,
+// 							},
+// 							992: {
+// 								items: 3,
+// 							},
+// 						},
+// 					});
 
-					sessionStorage.setItem("reviewsData", JSON.stringify(reviewsData));
-					console.log("Reviews data stored in sessionStorage.");
-				}
-			} else {
-				console.log("Document does not exist.");
-			}
-		})
-		.catch((error) => {
-			console.log("Error checking for reviews:", error);
-		});
+// 					sessionStorage.setItem("reviewsData", JSON.stringify(reviewsData));
+// 					console.log("Reviews data stored in sessionStorage.");
+// 				}
+// 			} else {
+// 				console.log("Document does not exist.");
+// 			}
+// 		})
+// 		.catch((error) => {
+// 			console.log("Error checking for reviews:", error);
+// 		});
 
-	const teamContainer = document.getElementById("teamContainer");
-	const foundersDocRef = doc(totfdCollection, "Founders");
+// 	const teamContainer = document.getElementById("teamContainer");
+// 	const foundersDocRef = doc(totfdCollection, "Founders");
 
-	getDoc(foundersDocRef)
-		.then((docSnapshot) => {
-			if (docSnapshot.exists) {
-				const data = docSnapshot.data();
-				const foundersData = data.founders || [];
+// 	getDoc(foundersDocRef)
+// 		.then((docSnapshot) => {
+// 			if (docSnapshot.exists) {
+// 				const data = docSnapshot.data();
+// 				const foundersData = data.founders || [];
 
-				if (Array.isArray(foundersData) && foundersData.length > 0) {
-					const foundersLink = document.getElementById("founders");
-					foundersLink.style.display = "block";
-					const foundersLink2 = document.getElementById("founders2");
-					foundersLink2.style.display = "block";
-					const TeamSection = document.getElementById("TeamSection");
-					TeamSection.style.display = "block";
-					sessionStorage.setItem("foundersData", JSON.stringify(foundersData));
+// 				if (Array.isArray(foundersData) && foundersData.length > 0) {
+// 					const foundersLink = document.getElementById("founders");
+// 					foundersLink.style.display = "block";
+// 					const foundersLink2 = document.getElementById("founders2");
+// 					foundersLink2.style.display = "block";
+// 					const TeamSection = document.getElementById("TeamSection");
+// 					TeamSection.style.display = "block";
+// 					sessionStorage.setItem("foundersData", JSON.stringify(foundersData));
 
-					foundersData.forEach((founder, index) => {
-						const colDelay = (index + 1) * 0.3;
-						const colElement = document.createElement("div");
-						colElement.classList.add("col-12", "wow", "slideInUp");
-						colElement.setAttribute("data-wow-delay", `${colDelay}s`);
+// 					foundersData.forEach((founder, index) => {
+// 						const colDelay = (index + 1) * 0.3;
+// 						const colElement = document.createElement("div");
+// 						colElement.classList.add("col-12", "wow", "slideInUp");
+// 						colElement.setAttribute("data-wow-delay", `${colDelay}s`);
 
-						const teamItem = document.createElement("div");
-						teamItem.classList.add(
-							"team-item",
-							"bg-light",
-							"rounded",
-							"overflow-hidden"
-						);
+// 						const teamItem = document.createElement("div");
+// 						teamItem.classList.add(
+// 							"team-item",
+// 							"bg-light",
+// 							"rounded",
+// 							"overflow-hidden"
+// 						);
 
-						const teamImg = document.createElement("div");
-						teamImg.classList.add("team-img", "position-relative", "overflow-hidden", "d-flex", "justify-content-center", "align-items-center");
+// 						const teamImg = document.createElement("div");
+// 						teamImg.classList.add("team-img", "position-relative", "overflow-hidden", "d-flex", "justify-content-center", "align-items-center");
 
-						const imgElement = document.createElement("img");
-						imgElement.classList.add("img-fluid", "w-100");
-						imgElement.style.maxWidth = "250px"; // Adjust this value as needed
-						imgElement.style.height = "auto";
-						imgElement.src = founder.picUrl;
-						imgElement.alt = founder.founderName;
-						teamImg.appendChild(imgElement);
+// 						const imgElement = document.createElement("img");
+// 						imgElement.classList.add("img-fluid", "w-100");
+// 						imgElement.style.maxWidth = "250px"; // Adjust this value as needed
+// 						imgElement.style.height = "auto";
+// 						imgElement.src = founder.picUrl;
+// 						imgElement.alt = founder.founderName;
+// 						teamImg.appendChild(imgElement);
 
-						const teamSocial = document.createElement("div");
-						teamSocial.classList.add("team-social");
-						teamSocial.style.display = "none";
+// 						const teamSocial = document.createElement("div");
+// 						teamSocial.classList.add("team-social");
+// 						teamSocial.style.display = "none";
 
-						const socialIcons = [
-							"fa fa-globe",
-							"fab fa-facebook-f",
-							"fab fa-instagram",
-							"fab fa-linkedin-in",
-						];
+// 						const socialIcons = [
+// 							"fa fa-globe",
+// 							"fab fa-facebook-f",
+// 							"fab fa-instagram",
+// 							"fab fa-linkedin-in",
+// 						];
 
-						socialIcons.forEach((iconClass) => {
-							const icon = document.createElement("i");
-							icon.setAttribute(
-								"class",
-								`btn btn-lg btn-primary btn-lg-square rounded ${iconClass} fw-normal`
-							);
-							teamSocial.appendChild(icon);
-						});
+// 						socialIcons.forEach((iconClass) => {
+// 							const icon = document.createElement("i");
+// 							icon.setAttribute(
+// 								"class",
+// 								`btn btn-lg btn-primary btn-lg-square rounded ${iconClass} fw-normal`
+// 							);
+// 							teamSocial.appendChild(icon);
+// 						});
 
-						teamImg.appendChild(teamSocial);
-						teamItem.appendChild(teamImg);
-						teamImg.addEventListener("mouseover", () => {
-							teamSocial.style.display = "none";
-						});
+// 						teamImg.appendChild(teamSocial);
+// 						teamItem.appendChild(teamImg);
+// 						teamImg.addEventListener("mouseover", () => {
+// 							teamSocial.style.display = "none";
+// 						});
 
-						teamImg.addEventListener("mouseout", () => {
-							teamSocial.style.display = "none";
-						});
+// 						teamImg.addEventListener("mouseout", () => {
+// 							teamSocial.style.display = "none";
+// 						});
 
-						const textCenter = document.createElement("div");
-						textCenter.classList.add("py-4");
+// 						const textCenter = document.createElement("div");
+// 						textCenter.classList.add("py-4");
 
-						const nameElement = document.createElement("h4");
-						nameElement.classList.add("text-center", "text-primary");
-						nameElement.textContent = founder.founderName;
-						textCenter.appendChild(nameElement);
+// 						const nameElement = document.createElement("h4");
+// 						nameElement.classList.add("text-center", "text-primary");
+// 						nameElement.textContent = founder.founderName;
+// 						textCenter.appendChild(nameElement);
 
-						const designationElement = document.createElement("p");
-						designationElement.classList.add("text-center", "text-uppercase", "m-0");
-						designationElement.textContent = founder.founderDesignation;
-						textCenter.appendChild(designationElement);
+// 						const designationElement = document.createElement("p");
+// 						designationElement.classList.add("text-center", "text-uppercase", "m-0");
+// 						designationElement.textContent = founder.founderDesignation;
+// 						textCenter.appendChild(designationElement);
 
-						const descriptionElement = document.createElement("p");
-						descriptionElement.classList.add("text-muted", "mt-3", "p-2");
-						descriptionElement.textContent = founder.founderDescription;
-						textCenter.appendChild(descriptionElement);
+// 						const descriptionElement = document.createElement("p");
+// 						descriptionElement.classList.add("text-muted", "mt-3", "p-2");
+// 						descriptionElement.textContent = founder.founderDescription;
+// 						textCenter.appendChild(descriptionElement);
 
-						const descriptionContainer = document.createElement("div");
-						descriptionContainer.classList.add("row");
-						const descriptionCol = document.createElement("div");
-						descriptionCol.classList.add("col-12");
-						descriptionContainer.appendChild(descriptionCol);
+// 						const descriptionContainer = document.createElement("div");
+// 						descriptionContainer.classList.add("row");
+// 						const descriptionCol = document.createElement("div");
+// 						descriptionCol.classList.add("col-12");
+// 						descriptionContainer.appendChild(descriptionCol);
 
-						teamItem.appendChild(textCenter);
-						teamItem.appendChild(descriptionContainer);
-						colElement.appendChild(teamItem);
-						teamContainer.appendChild(colElement);
-					});
-				}
-			}
-		})
-		.catch((error) => {
-			console.log("Error checking for founders:", error);
-		});
+// 						teamItem.appendChild(textCenter);
+// 						teamItem.appendChild(descriptionContainer);
+// 						colElement.appendChild(teamItem);
+// 						teamContainer.appendChild(colElement);
+// 					});
+// 				}
+// 			}
+// 		})
+// 		.catch((error) => {
+// 			console.log("Error checking for founders:", error);
+// 		});
 
-	getDoc(clientsDocRef)
-		.then((docSnapshot) => {
-			if (docSnapshot.exists()) {
-				const data = docSnapshot.data();
-				const clientsData = data.clients || [];
-				console.log(data.clients);
-				if (Array.isArray(clientsData) && clientsData.length > 0) {
-					const clientsLink = document.getElementById("Certifications");
-					clientsLink.style.display = "block";
-					// const clientsLink2 = document.getElementById("clients2");
-					// clientsLink2.style.display = "block";
-					const vendorSection = document.getElementById("vendorSection");
-					vendorSection.style.display = "block";
+// 	getDoc(clientsDocRef)
+// 		.then((docSnapshot) => {
+// 			if (docSnapshot.exists()) {
+// 				const data = docSnapshot.data();
+// 				const clientsData = data.clients || [];
+// 				console.log(data.clients);
+// 				if (Array.isArray(clientsData) && clientsData.length > 0) {
+// 					const clientsLink = document.getElementById("Certifications");
+// 					clientsLink.style.display = "block";
+// 					// const clientsLink2 = document.getElementById("clients2");
+// 					// clientsLink2.style.display = "block";
+// 					const vendorSection = document.getElementById("vendorSection");
+// 					vendorSection.style.display = "block";
 
-					const clientsArray = [];
+// 					const clientsArray = [];
 
-					clientsData.forEach((client) => {
-						clientsArray.push(client);
-					});
-					sessionStorage.setItem("clientsData", JSON.stringify(clientsArray));
-					// initializeClientCarousel();	
-				}
+// 					clientsData.forEach((client) => {
+// 						clientsArray.push(client);
+// 					});
+// 					sessionStorage.setItem("clientsData", JSON.stringify(clientsArray));
+// 					// initializeClientCarousel();	
+// 				}
 
-			}
-		})
-		.catch((error) => {
-			console.error("Error checking for clients:", error);
-		});
+// 			}
+// 		})
+// 		.catch((error) => {
+// 			console.error("Error checking for clients:", error);
+// 		});
 
 
-});
+// });
 
 // function initializeClientCarousel() {
 // 	console.log("xxx");
@@ -859,6 +859,82 @@ document.addEventListener("DOMContentLoaded", function () {
 // 	}
 // }
 
+
+document.addEventListener("DOMContentLoaded", function () {
+    const testimonialCarousel = document.getElementById("testimonial-carousel");
+    const reviewSection = document.getElementById("reviewSection");
+
+    // Dummy reviews data
+    const reviewsData = [
+        {
+            name: "Subhash G T",
+            picUrl: "./img/testimonial-avatar.png",
+			text:"Amfosys exceeded all my expectations with their SAP training program! The trainers were industry experts who provided in-depth knowledge and practical exercises that were invaluable. The comprehensive course material and the supportive staff made my learning experience truly remarkable. I highly recommend Amfosys for anyone pursuing SAP certification."
+        },
+        {
+            name: "Surya Narayana Reddy",
+            picUrl: "./img/testimonial-avatar.png",
+			text: "Attending Amfosys for SAP training was a great decision! The instructors were experts in their fields and provided practical, hands-on training that was critical for my SAP certification. The course material was thorough, and the support staff was incredibly helpful. I highly recommend Amfosys to anyone looking to advance their SAP skills"
+        },
+        {
+            name: "Bikram Kumar",
+            picUrl: "./img/testimonial-avatar.png",
+			text:"I had an outstanding experience at Amfosys for my SAP training! The instructors were exceptionally knowledgeable and provided hands-on training that was crucial for my SAP certification. The course material was detailed and easy to understand, and the support staff was always ready to help. I highly recommend Amfosys to anyone looking to excel in SAP"
+        },
+        {
+            name: "Chethan Gowda",
+            picUrl: "./img/testimonial-avatar.png",
+			text:" The instructors not only imparted deep knowledge of SAP modules but also tailored the learning experience to suit individual learning styles. The hands-on approach and real-world simulations were incredibly effective in bridging theory with practical application. The guidance from the support team was exceptional throughout. Amfosys sets a gold standard in SAP training, and I can confidently recommend them to anyone looking to master SAP"
+		},
+        {
+            name: "Chandrakaanth",
+            picUrl: "./img/testimonial-avatar.png",
+			text:"Amfosys exceeded all my expectations with their SAP training program! The trainers were industry experts who provided in-depth knowledge and practical exercises that were invaluable. The comprehensive course material and the supportive staff made my learning experience truly remarkable. I highly recommend Amfosys for anyone pursuing SAP certification."
+		}
+    ];
+
+    // Display reviews
+    if (Array.isArray(reviewsData) && reviewsData.length > 0) {
+        reviewSection.style.display = "block";
+
+        reviewsData.forEach((review) => {
+            const testimonialItem = document.createElement("div");
+            testimonialItem.classList.add("testimonial-item", "bg-light");
+
+            const innerContent = `
+                <div class="d-flex align-items-center border-bottom pt-5 pb-4 px-5">
+                    <img class="img-fluid rounded" src="${review.picUrl}" style="width: 60px; height: 60px" />
+                    <div class="ps-4">
+                        <h4 class="text-primary mb-1">${review.name}</h4>
+                    </div>
+                </div>
+                <div class="pt-4 pb-5 px-5">
+                    ${review.text}
+                </div>
+            `;
+            testimonialItem.innerHTML = innerContent;
+            testimonialCarousel.appendChild(testimonialItem);
+            console.log("Added testimonial:", review.name);
+        });
+
+        // Initialize Owl Carousel
+        $(testimonialCarousel).owlCarousel({
+            autoplay: true,
+            smartSpeed: 1500,
+            dots: true,
+            loop: true,
+            center: true,
+            responsive: {
+                0: { items: 1 },
+                576: { items: 1 },
+                768: { items: 2 },
+                992: { items: 3 },
+            },
+        });
+
+        console.log("Reviews data displayed from local definition.");
+    }
+});
 
 
 document.addEventListener("DOMContentLoaded", function () {
